@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-63bffb16747362844609.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "student_manage_system",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "student_manage_system::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-student_manage_system-Debug-24be18cad45daab24748.json",
+					"name" : "student_manage_system",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "student_manage_system_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-student_manage_system_autogen-Debug-7aa68b3113eb529549ec.json",
+					"name" : "student_manage_system_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "student_manage_system_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-student_manage_system_autogen_timestamp_deps-Debug-d3c0703d354ddcbbd0b2.json",
+					"name" : "student_manage_system_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/anishan/Project/qt/student_manage_system/cmake-build-debug",
+		"source" : "/Users/anishan/Project/qt/student_manage_system"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
