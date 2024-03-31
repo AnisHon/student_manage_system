@@ -34,11 +34,13 @@ private:
     static double subjectAverage(int id);
     static QMap<QString, int> getSubjectNames();
     static QString getSubjectName(int id);
+    static QStringList getProjectScores(int id);
+
 void showEvent(QShowEvent *event) override;
 
 private:
     Ui::StatisticWidget *ui;
-    QMap<QString, int> subjects;
+    QMap<int, int> subjectToIndex;
 
 
 };

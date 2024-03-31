@@ -10,6 +10,7 @@
 #include <QBarSeries>
 #include <QBarSet>
 #include <QBarCategoryAxis>
+#include <QSqlRecord>
 
 
 StatisticWidget::StatisticWidget(QWidget *parent)
@@ -178,12 +179,20 @@ void StatisticWidget::initBarChart(int i) {
 
 void StatisticWidget::reloadCharts() {
 
-    subjects = getSubjectNames();
+    auto subjects = getSubjectNames();
     ui->ComboBox->clear();
-    ui->ComboBox->addItems(subjects.keys());
+    for (const auto &item: subjects.keys()) {
+        ui->ComboBox->addItem(item, subjects[item]);
+    }
+    int id = ui->ComboBox->currentData().toInt();
     initPieChart();
     initLineChart();
-    initBarChart(subjects[ui->ComboBox->currentText()]);
+    initBarChart(id);
+
+    ui->average->setText(QString("<h2>平均分：%1</h2>").arg(subjectSum(id)));
+    ui->total->setText(QString("<h3>总人数：%1</h3>").arg(subjectAverage(id)));
+    ui->listWidget->clear();
+    ui->listWidget->addItems(getProjectScores(id));
 }
 
 
@@ -255,9 +264,7 @@ QString StatisticWidget::getSubjectName(int id) {
     query.prepare("select name from subject where id = :0");
     query.bindValue(0, id);
     query.exec();
-    qDebug() << query.record();
     query.next();
-
     return query.value(0).toString();
 }
 
@@ -293,16 +300,33 @@ double StatisticWidget::subjectAverage(int id) {
 }
 
 
+QStringList StatisticWidget::getProjectScores(int id) {
+    QStringList list;
 
-
+    QSqlQuery query;
+    query.prepare("select concat(name, ':',score) from score left join db_qt01.student s on s.id = score.stu_id where subject_id = :1");
+    query.bindValue(0, id);
+    query.exec();
+    while (query.next()) {
+        list << query.value(0).toString();
+    }
+    return list;
+}
 
 
 void StatisticWidget::on_ComboBox_activated(int index)
 {
-    int id = heightForWidth(subjects[ui->ComboBox->currentText()]);
+    Q_UNUSED(index);
+//    int id = heightForWidth(subjects.value(ui->ComboBox->currentText()));
+//    qDebug() << ui->ComboBox->currentText();
+//    qDebug() << subjects;
+    int id = ui->ComboBox->currentData().toInt();
     initBarChart(id);
-    ui->total->setText(QString("平均分：%1").arg(subjectSum(id)));
-    ui->average->setText(QString("总人数：%1").arg(subjectAverage(id)));
+    ui->average->setText(QString("<h2>平均分：%1</h2>").arg(subjectSum(id)));
+    ui->total->setText(QString("<h3>总人数：%1</h3>").arg(subjectAverage(id)));
+
+    ui->listWidget->clear();
+    ui->listWidget->addItems(getProjectScores(id));
 
 }
 
