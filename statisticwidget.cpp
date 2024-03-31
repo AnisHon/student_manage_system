@@ -73,13 +73,18 @@ void StatisticWidget::initPieChart() {
 
 void StatisticWidget::initLineChart() {
 
+
     
-    auto *chart = ui->line->chart();
+    QChart *pChart = ui->line->chart();
+    auto *chart = new QChart();
+    ui->line->setChart(chart);
+    if (pChart != nullptr) {
+        delete pChart;
+    }
 
-    chart->removeAllSeries();
 
-    auto axisX = new QValueAxis(this);
-    auto axisY = new QValueAxis(this);
+    auto axisX = new QValueAxis();
+    auto axisY = new QValueAxis();
 
 
     axisX->setRange(0, 100);
@@ -91,7 +96,7 @@ void StatisticWidget::initLineChart() {
     chart->addAxis(axisX, Qt::AlignBottom);
     chart->addAxis(axisY, Qt::AlignLeft);
 
-    auto *lineSeries = new QLineSeries(this);
+    auto *lineSeries = new QLineSeries();
     lineSeries->setName("分段人数");
     chart->addSeries(lineSeries);
     lineSeries->attachAxis(axisX);
@@ -106,27 +111,36 @@ void StatisticWidget::initLineChart() {
 
 }
 
-void StatisticWidget::initBarChart() {
-    QChart *chart = ui->bar->chart();
-    chart->removeAllSeries();
+void StatisticWidget::initBarChart(int i) {
     
+    QChart *pChart = ui->bar->chart();
+    auto *chart = new QChart;
+    ui->bar->setChart(chart);
+    delete pChart;
+    chart->removeAllSeries();
+
+
     QVector<int> counts = {
-            totalCountPreSubjectWithin(0, 10, 1),
-            totalCountPreSubjectWithin(10, 20, 1),
-            totalCountPreSubjectWithin(20, 30, 1),
-            totalCountPreSubjectWithin(30, 40, 1),
-            totalCountPreSubjectWithin(40, 50, 1),
-            totalCountPreSubjectWithin(50, 60, 1),
-            totalCountPreSubjectWithin(60, 70, 1),
-            totalCountPreSubjectWithin(70, 80, 1),
-            totalCountPreSubjectWithin(80, 90, 1),
-            totalCountPreSubjectWithin(90, 100, 1)
+            totalCountPreSubjectWithin(0, 19, i),
+//            totalCountPreSubjectWithin(10, 20, 1),
+            totalCountPreSubjectWithin(20, 39, i),
+//            totalCountPreSubjectWithin(30, 40, 1),
+            totalCountPreSubjectWithin(40, 59, i),
+//            totalCountPreSubjectWithin(50, 60, 1),
+            totalCountPreSubjectWithin(60, 79, i),
+//            totalCountPreSubjectWithin(70, 80, 1),
+            totalCountPreSubjectWithin(80, 89, i),
+            totalCountPreSubjectWithin(90, 100, i)
     };
     
-    QStringList list;
-    for (int i = 0; i < 10; ++i) {
-        list << QString("%1-%2").arg(i * 10).arg((i + 1) * 10);
-    }
+    QStringList list = {
+            "0-19",
+            "20-39",
+            "40-59",
+            "60-79",
+            "80-89",
+            "90-100",
+    };
 
     auto *barSeries = new QBarSeries;
     QBarSet *barSet = new QBarSet("人数");
@@ -137,28 +151,39 @@ void StatisticWidget::initBarChart() {
         barSet->append(item);
     }
 
-    QValueAxis *axisY = new QValueAxis;
-    axisY->setRange(0, totalCount());
+    auto *axisY = new QValueAxis;
+    axisY->setRange(0, totalCountPreSubject(i));
     axisY->setTitleText("人数");
-    QBarCategoryAxis *categoryAxis = new QBarCategoryAxis;
+    axisY->setLabelFormat("%d");
+    auto *categoryAxis = new QBarCategoryAxis;
     categoryAxis->setTitleText("分段");
     categoryAxis->append(list);
 
+    chart->addSeries(barSeries);
+    chart->addAxis(axisY, Qt::AlignLeft);
+    chart->addAxis(categoryAxis, Qt::AlignBottom);
+
+    barSeries->attachAxis(axisY);
+    barSeries->attachAxis(categoryAxis);
+    barSeries->setLabelsVisible(true);
+//    barSeries->setLabelsPosition(QAbstractBarSeries::LabelsOutsideEnd);
 
 
+    chart->setAnimationOptions(QChart::SeriesAnimations);
+    chart->setTitle(getSubjectName(i) + "的人数分布");
+//    chart->legend()->setAlignment(Qt::AlignBottom);
 
-    
-
-    for (const auto &item: counts) {
-        
-    }
     
 }
 
 void StatisticWidget::reloadCharts() {
+
+    subjects = getSubjectNames();
+    ui->ComboBox->clear();
+    ui->ComboBox->addItems(subjects.keys());
     initPieChart();
     initLineChart();
-    initBarChart();
+    initBarChart(subjects[ui->ComboBox->currentText()]);
 }
 
 
@@ -211,22 +236,73 @@ int StatisticWidget::totalCountPreSubjectWithin(int a, int b, int id) {
 
     QSqlQuery sqlQuery;
     sqlQuery.setForwardOnly(true);
-    sqlQuery.prepare(" select count(*) from (select score as average from score where subject_id = :2) as sa where sa.average >= :0 and sa.average <= :1;");
-    sqlQuery.bindValue(0, a);
-    sqlQuery.bindValue(1, b);
-    sqlQuery.bindValue(2, id);
+    sqlQuery.prepare("select count(*) from (select score as average from score where subject_id = :0) as sa where sa.average >= :1 and sa.average <= :2");
+    sqlQuery.bindValue(0, id);
+    sqlQuery.bindValue(1, a);
+    sqlQuery.bindValue(2, b);
     sqlQuery.exec();
     sqlQuery.next();
     return sqlQuery.value(0).toInt();
 }
 
 void StatisticWidget::showEvent(QShowEvent *event) {
-    initLineChart();
-    initPieChart();
+    reloadCharts();
     QWidget::showEvent(event);
+}
+
+QString StatisticWidget::getSubjectName(int id) {
+    QSqlQuery query;
+    query.prepare("select name from subject where id = :0");
+    query.bindValue(0, id);
+    query.exec();
+    qDebug() << query.record();
+    query.next();
+
+    return query.value(0).toString();
+}
+
+QMap<QString, int> StatisticWidget::getSubjectNames() {
+    QMap<QString, int> map;
+    QSqlQuery query;
+    query.setForwardOnly(true);
+    query.exec("select id, name from subject");
+    while (query.next()) {
+        map.insert(query.value(1).toString(), query.value(0).toInt());
+    }
+    return map;
+}
+
+int StatisticWidget::subjectSum(int id) {
+    QSqlQuery query;
+    query.prepare("select sum(score) from score where subject_id = :0");
+    query.bindValue(0, id);
+    query.exec();
+    query.next();
+
+    return query.value(0).toInt();
+}
+
+double StatisticWidget::subjectAverage(int id) {
+    QSqlQuery query;
+    query.prepare("select avg(score) from score where subject_id = :0");
+    query.bindValue(0, id);
+    query.exec();
+    query.next();
+
+    return query.value(0).toDouble();
 }
 
 
 
 
+
+
+void StatisticWidget::on_ComboBox_activated(int index)
+{
+    int id = heightForWidth(subjects[ui->ComboBox->currentText()]);
+    initBarChart(id);
+    ui->total->setText(QString("平均分：%1").arg(subjectSum(id)));
+    ui->average->setText(QString("总人数：%1").arg(subjectAverage(id)));
+
+}
 

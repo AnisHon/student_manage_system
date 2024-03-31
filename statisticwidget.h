@@ -16,10 +16,13 @@ public:
     explicit StatisticWidget(QWidget *parent = nullptr);
     ~StatisticWidget() override;
 
+private slots:
+    void on_ComboBox_activated(int index);
+
 private:
     void initPieChart();
     void initLineChart();
-    void initBarChart();
+    void initBarChart(int i);
     void reloadCharts();
 
     static int totalCount();
@@ -27,11 +30,17 @@ private:
     static int totalCountWithin(int a, int b);
     static int totalCountPreSubjectWithin(int a, int b, int id);
     static QMap<double, int> averageScores();
-
+    static int subjectSum(int id);
+    static double subjectAverage(int id);
+    static QMap<QString, int> getSubjectNames();
+    static QString getSubjectName(int id);
 void showEvent(QShowEvent *event) override;
 
 private:
     Ui::StatisticWidget *ui;
+    QMap<QString, int> subjects;
+
+
 };
 
 #endif // STATISTICWIDGET_H

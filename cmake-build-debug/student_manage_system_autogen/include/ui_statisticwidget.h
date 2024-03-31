@@ -38,9 +38,9 @@ public:
     QVBoxLayout *verticalLayout_2;
     QFormLayout *formLayout;
     QLabel *Label;
-    QLabel *label;
+    QLabel *average;
     QComboBox *ComboBox;
-    QLabel *label_2;
+    QLabel *total;
     QListWidget *listWidget;
 
     void setupUi(QWidget *StatisticWidget)
@@ -124,20 +124,20 @@ public:
 
         formLayout->setWidget(2, QFormLayout::LabelRole, Label);
 
-        label = new QLabel(groupbox_);
-        label->setObjectName("label");
+        average = new QLabel(groupbox_);
+        average->setObjectName("average");
 
-        formLayout->setWidget(0, QFormLayout::SpanningRole, label);
+        formLayout->setWidget(0, QFormLayout::SpanningRole, average);
 
         ComboBox = new QComboBox(groupbox_);
         ComboBox->setObjectName("ComboBox");
 
         formLayout->setWidget(2, QFormLayout::FieldRole, ComboBox);
 
-        label_2 = new QLabel(groupbox_);
-        label_2->setObjectName("label_2");
+        total = new QLabel(groupbox_);
+        total->setObjectName("total");
 
-        formLayout->setWidget(1, QFormLayout::SpanningRole, label_2);
+        formLayout->setWidget(1, QFormLayout::SpanningRole, total);
 
         listWidget = new QListWidget(groupbox_);
         listWidget->setObjectName("listWidget");
@@ -164,8 +164,8 @@ public:
         StatisticWidget->setWindowTitle(QCoreApplication::translate("StatisticWidget", "Form", nullptr));
         groupBox_2->setTitle(QString());
         Label->setText(QCoreApplication::translate("StatisticWidget", "\347\247\221\347\233\256", nullptr));
-        label->setText(QCoreApplication::translate("StatisticWidget", "<html><head/><body><p><span style=\" font-size:18pt; font-weight:700;\">\345\271\263\345\235\207\345\210\206\357\274\232</span></p></body></html>", nullptr));
-        label_2->setText(QCoreApplication::translate("StatisticWidget", "\346\200\273\344\272\272\346\225\260\357\274\232", nullptr));
+        average->setText(QCoreApplication::translate("StatisticWidget", "<html><head/><body><p><span style=\" font-size:18pt; font-weight:700;\">\345\271\263\345\235\207\345\210\206\357\274\232</span></p></body></html>", nullptr));
+        total->setText(QCoreApplication::translate("StatisticWidget", "\346\200\273\344\272\272\346\225\260\357\274\232", nullptr));
     } // retranslateUi
 
 };

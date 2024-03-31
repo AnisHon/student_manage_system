@@ -131,7 +131,7 @@ StatisticWidget&gt;QGroupBox&gt;QChartView {
             </widget>
            </item>
            <item row="0" column="0" colspan="2">
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="average">
              <property name="text">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;平均分：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
@@ -141,7 +141,7 @@ StatisticWidget&gt;QGroupBox&gt;QChartView {
             <widget class="QComboBox" name="ComboBox"/>
            </item>
            <item row="1" column="0" colspan="2">
-            <widget class="QLabel" name="label_2">
+            <widget class="QLabel" name="total">
              <property name="text">
               <string>总人数：</string>
              </property>
