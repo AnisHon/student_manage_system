@@ -2,6 +2,7 @@
 #include "EWIEGA46WW/moc_comboboxdelegate.cpp"
 #include "EWIEGA46WW/moc_indexwidget.cpp"
 #include "EWIEGA46WW/moc_mainwindow.cpp"
+#include "EWIEGA46WW/moc_scorechangedialog.cpp"
 #include "EWIEGA46WW/moc_scorewidget.cpp"
 #include "EWIEGA46WW/moc_sidebar.cpp"
 #include "EWIEGA46WW/moc_statisticwidget.cpp"

@@ -14,12 +14,9 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">StatisticWidget QGroupBox {
-	backgroud-color: transparent;
-}
-StatisticWidget&gt;QGroupBox&gt;QChartView {
-	background-color: transparent;
-}</string>
+   <string notr="true">
+
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -133,7 +130,7 @@ StatisticWidget&gt;QGroupBox&gt;QChartView {
            <item row="0" column="0" colspan="2">
             <widget class="QLabel" name="average">
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;平均分：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;h2&gt;平均分：&lt;/h2&gt;</string>
              </property>
             </widget>
            </item>
@@ -143,12 +140,16 @@ StatisticWidget&gt;QGroupBox&gt;QChartView {
            <item row="1" column="0" colspan="2">
             <widget class="QLabel" name="total">
              <property name="text">
-              <string>总人数：</string>
+              <string>&lt;h3&gt;总人数：&lt;/h3&gt;</string>
              </property>
             </widget>
            </item>
            <item row="3" column="0" colspan="2">
-            <widget class="QListWidget" name="listWidget"/>
+            <widget class="QListWidget" name="listWidget">
+             <property name="editTriggers">
+              <set>QAbstractItemView::NoEditTriggers</set>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>

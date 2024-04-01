@@ -48,12 +48,7 @@ public:
         if (StatisticWidget->objectName().isEmpty())
             StatisticWidget->setObjectName("StatisticWidget");
         StatisticWidget->resize(840, 567);
-        StatisticWidget->setStyleSheet(QString::fromUtf8("StatisticWidget QGroupBox {\n"
-"	backgroud-color: transparent;\n"
-"}\n"
-"StatisticWidget>QGroupBox>QChartView {\n"
-"	background-color: transparent;\n"
-"}"));
+        StatisticWidget->setStyleSheet(QString::fromUtf8(""));
         verticalLayout = new QVBoxLayout(StatisticWidget);
         verticalLayout->setObjectName("verticalLayout");
         groupBox = new QGroupBox(StatisticWidget);
@@ -141,6 +136,7 @@ public:
 
         listWidget = new QListWidget(groupbox_);
         listWidget->setObjectName("listWidget");
+        listWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
         formLayout->setWidget(3, QFormLayout::SpanningRole, listWidget);
 
@@ -164,8 +160,8 @@ public:
         StatisticWidget->setWindowTitle(QCoreApplication::translate("StatisticWidget", "Form", nullptr));
         groupBox_2->setTitle(QString());
         Label->setText(QCoreApplication::translate("StatisticWidget", "\347\247\221\347\233\256", nullptr));
-        average->setText(QCoreApplication::translate("StatisticWidget", "<html><head/><body><p><span style=\" font-size:18pt; font-weight:700;\">\345\271\263\345\235\207\345\210\206\357\274\232</span></p></body></html>", nullptr));
-        total->setText(QCoreApplication::translate("StatisticWidget", "\346\200\273\344\272\272\346\225\260\357\274\232", nullptr));
+        average->setText(QCoreApplication::translate("StatisticWidget", "<h2>\345\271\263\345\235\207\345\210\206\357\274\232</h2>", nullptr));
+        total->setText(QCoreApplication::translate("StatisticWidget", "<h3>\346\200\273\344\272\272\346\225\260\357\274\232</h3>", nullptr));
     } // retranslateUi
 
 };

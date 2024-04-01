@@ -26,6 +26,9 @@ public:
         if (IndexWidget->objectName().isEmpty())
             IndexWidget->setObjectName("IndexWidget");
         IndexWidget->resize(400, 300);
+        IndexWidget->setStyleSheet(QString::fromUtf8("IndexWidget {\n"
+"	background-color: #ECECEB;\n"
+"}"));
         label = new QLabel(IndexWidget);
         label->setObjectName("label");
         label->setGeometry(QRect(150, 100, 58, 16));

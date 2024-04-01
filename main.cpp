@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
 
     w.show();
-//    a.setStyleSheet("QWidget {background-color: #ECECEB}");
+//    app.setStyleSheet("StatisticWidget, IndexWidget, ScoreWidget, StatisticWidget, StudentWidget {background-color: #ECECEB}");
 
     return app.exec();
 }

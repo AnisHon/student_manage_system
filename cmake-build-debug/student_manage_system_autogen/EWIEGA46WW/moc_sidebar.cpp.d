@@ -843,6 +843,7 @@
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdarg.h \
   /Users/anishan/Project/qt/student_manage_system/comboboxdelegate.h \
   /Users/anishan/Project/qt/student_manage_system/indexwidget.h \
+  /Users/anishan/Project/qt/student_manage_system/scorechangedialog.h \
   /Users/anishan/Project/qt/student_manage_system/scorewidget.h \
   /Users/anishan/Project/qt/student_manage_system/statisticwidget.h \
   /Users/anishan/Project/qt/student_manage_system/studentwidget.h \
@@ -860,6 +861,7 @@
   /Users/anishan/Qt/6.6.2/macos/lib/QtCharts.framework/Versions/A/Headers/qlegend.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCharts.framework/Versions/A/Headers/qtcharts-config.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCharts.framework/Versions/A/Headers/qtchartsexports.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/QItemSelectionModel \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/QList \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/QMargins \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/QObject \
@@ -1030,14 +1032,20 @@
   /Users/anishan/Qt/6.6.2/macos/lib/QtGui.framework/Versions/A/Headers/qvectornd.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/QSqlDatabase \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/QSqlQuery \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/QSqlQueryModel \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/QSqlRecord \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/QSqlTableModel \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqldatabase.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqlquery.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqlquerymodel.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqlrecord.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqltablemodel.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qtsql-config.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qtsqlexports.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qtsqlglobal.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/QDataWidgetMapper \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/QDialog \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/QGraphicsView \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/QGraphicsWidget \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/QPushButton \
@@ -1051,6 +1059,7 @@
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractslider.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractspinbox.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qdatawidgetmapper.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qdialog.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qframe.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qgraphicsitem.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qgraphicslayoutitem.h \

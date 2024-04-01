@@ -370,6 +370,12 @@
 			null
 		],
 		[
+			"/Users/anishan/Project/qt/student_manage_system/scorechangedialog.h",
+			"MU",
+			"EWIEGA46WW/moc_scorechangedialog.cpp",
+			null
+		],
+		[
 			"/Users/anishan/Project/qt/student_manage_system/scorewidget.h",
 			"MU",
 			"EWIEGA46WW/moc_scorewidget.cpp",
@@ -486,6 +492,11 @@
 		],
 		[
 			"/Users/anishan/Project/qt/student_manage_system/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/anishan/Project/qt/student_manage_system/scorechangedialog.cpp",
 			"MU",
 			null
 		],
