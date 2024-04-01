@@ -28,6 +28,9 @@ private slots:
 private:
     void initWidget();
 
+
+
+
 private:
     Ui::SideBar *ui;
     QVector<QPushButton *> pointers;

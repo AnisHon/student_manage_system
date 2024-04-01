@@ -48,7 +48,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>200</width>
+       <width>150</width>
        <height>16777215</height>
       </size>
      </property>
@@ -115,6 +115,10 @@
         <property name="text">
          <string>首页</string>
         </property>
+        <property name="icon">
+         <iconset resource="resource.qrc">
+          <normaloff>:/icon/icon/shouye.png</normaloff>:/icon/icon/shouye.png</iconset>
+        </property>
         <property name="checkable">
          <bool>true</bool>
         </property>
@@ -143,6 +147,10 @@
         <property name="text">
          <string>学生管理</string>
         </property>
+        <property name="icon">
+         <iconset resource="resource.qrc">
+          <normaloff>:/icon/icon/xuesheng.png</normaloff>:/icon/icon/xuesheng.png</iconset>
+        </property>
         <property name="checkable">
          <bool>true</bool>
         </property>
@@ -159,6 +167,10 @@
         <property name="text">
          <string>成绩管理</string>
         </property>
+        <property name="icon">
+         <iconset resource="resource.qrc">
+          <normaloff>:/icon/icon/chengji.png</normaloff>:/icon/icon/chengji.png</iconset>
+        </property>
         <property name="checkable">
          <bool>true</bool>
         </property>
@@ -174,6 +186,10 @@
         </property>
         <property name="text">
          <string>统计</string>
+        </property>
+        <property name="icon">
+         <iconset resource="resource.qrc">
+          <normaloff>:/icon/icon/tubiao-zhexiantu.png</normaloff>:/icon/icon/tubiao-zhexiantu.png</iconset>
         </property>
         <property name="checkable">
          <bool>true</bool>
@@ -685,6 +701,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

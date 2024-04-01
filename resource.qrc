@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>icon/chengji.png</file>
+        <file>icon/shouye.png</file>
+        <file>icon/shutdown.png</file>
+        <file>icon/tubiao-zhexiantu.png</file>
+        <file>icon/xuesheng.png</file>
+    </qresource>
+</RCC>

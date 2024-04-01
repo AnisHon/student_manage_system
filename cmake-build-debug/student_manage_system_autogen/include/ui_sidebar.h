@@ -10,6 +10,7 @@
 #define UI_SIDEBAR_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QPushButton>
@@ -55,7 +56,7 @@ public:
         bar = new QWidget(SideBar);
         bar->setObjectName("bar");
         bar->setMinimumSize(QSize(150, 0));
-        bar->setMaximumSize(QSize(200, 16777215));
+        bar->setMaximumSize(QSize(150, 16777215));
         bar->setStyleSheet(QString::fromUtf8("#bar {\n"
 "	background-color: rgba(224, 224, 222, 0.95);\n"
 "	padding: 40% 0;\n"
@@ -90,6 +91,9 @@ public:
         sizePolicy.setHeightForWidth(indexBtn->sizePolicy().hasHeightForWidth());
         indexBtn->setSizePolicy(sizePolicy);
         indexBtn->setAutoFillBackground(false);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icon/icon/shouye.png"), QSize(), QIcon::Normal, QIcon::Off);
+        indexBtn->setIcon(icon);
         indexBtn->setCheckable(true);
         indexBtn->setChecked(false);
         indexBtn->setAutoDefault(false);
@@ -101,6 +105,9 @@ public:
         studentBtn->setObjectName("studentBtn");
         sizePolicy.setHeightForWidth(studentBtn->sizePolicy().hasHeightForWidth());
         studentBtn->setSizePolicy(sizePolicy);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/icon/icon/xuesheng.png"), QSize(), QIcon::Normal, QIcon::Off);
+        studentBtn->setIcon(icon1);
         studentBtn->setCheckable(true);
 
         verticalLayout->addWidget(studentBtn);
@@ -109,6 +116,9 @@ public:
         scoreBtn->setObjectName("scoreBtn");
         sizePolicy.setHeightForWidth(scoreBtn->sizePolicy().hasHeightForWidth());
         scoreBtn->setSizePolicy(sizePolicy);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/icon/icon/chengji.png"), QSize(), QIcon::Normal, QIcon::Off);
+        scoreBtn->setIcon(icon2);
         scoreBtn->setCheckable(true);
 
         verticalLayout->addWidget(scoreBtn);
@@ -117,6 +127,9 @@ public:
         statisticBtn->setObjectName("statisticBtn");
         sizePolicy.setHeightForWidth(statisticBtn->sizePolicy().hasHeightForWidth());
         statisticBtn->setSizePolicy(sizePolicy);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/icon/icon/tubiao-zhexiantu.png"), QSize(), QIcon::Normal, QIcon::Off);
+        statisticBtn->setIcon(icon3);
         statisticBtn->setCheckable(true);
 
         verticalLayout->addWidget(statisticBtn);

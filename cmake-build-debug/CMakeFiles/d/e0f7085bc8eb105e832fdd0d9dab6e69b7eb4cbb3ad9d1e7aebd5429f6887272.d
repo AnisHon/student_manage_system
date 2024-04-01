@@ -886,6 +886,7 @@ student_manage_system_autogen/timestamp: \
   /Users/anishan/Project/qt/student_manage_system/mainwindow.cpp \
   /Users/anishan/Project/qt/student_manage_system/mainwindow.h \
   /Users/anishan/Project/qt/student_manage_system/mainwindow.ui \
+  /Users/anishan/Project/qt/student_manage_system/resource.qrc \
   /Users/anishan/Project/qt/student_manage_system/scorechangedialog.cpp \
   /Users/anishan/Project/qt/student_manage_system/scorechangedialog.h \
   /Users/anishan/Project/qt/student_manage_system/scorechangedialog.ui \
@@ -901,6 +902,9 @@ student_manage_system_autogen/timestamp: \
   /Users/anishan/Project/qt/student_manage_system/studentwidget.cpp \
   /Users/anishan/Project/qt/student_manage_system/studentwidget.h \
   /Users/anishan/Project/qt/student_manage_system/studentwidget.ui \
+  /Users/anishan/Project/qt/student_manage_system/titlebar.cpp \
+  /Users/anishan/Project/qt/student_manage_system/titlebar.h \
+  /Users/anishan/Project/qt/student_manage_system/titlebar.ui \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCharts.framework/Versions/A/Headers/QAbstractAxis \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCharts.framework/Versions/A/Headers/QAbstractSeries \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCharts.framework/Versions/A/Headers/QChart \

@@ -11,7 +11,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     sideBar = new SideBar(this);
-    this->setCentralWidget(sideBar);
+    titleBar = new TitleBar(this);
+
+    ui->verticalLayout->addWidget(titleBar);
+    ui->verticalLayout->addWidget(sideBar);
+//    this->setCentralWidget(sideBar);
 
 //    this->setAttribute(Qt::WA_TranslucentBackground);
     this->setWindowFlags(Qt::FramelessWindowHint);
@@ -21,11 +25,20 @@ MainWindow::MainWindow(QWidget *parent)
 //    this->setAttribute(Qt::WA_TranslucentBackground);//设置背景透明
 //    this->setAttribute(Qt::WA_TranslucentBackground);
 
+
+    connect(titleBar, &TitleBar::requestClose, this, &MainWindow::close);
+    connect(titleBar, &TitleBar::moveWindow, this, &MainWindow::moveWindowTo);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::moveWindowTo(int x, int y) {
+//    qDebug() << x << " " << y;
+    this->move(x, y);asdfsadf,.,`
 }
 
 

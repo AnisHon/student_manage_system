@@ -7,3 +7,4 @@
 #include "EWIEGA46WW/moc_sidebar.cpp"
 #include "EWIEGA46WW/moc_statisticwidget.cpp"
 #include "EWIEGA46WW/moc_studentwidget.cpp"
+#include "EWIEGA46WW/moc_titlebar.cpp"

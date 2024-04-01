@@ -848,6 +848,7 @@
   /Users/anishan/Project/qt/student_manage_system/sidebar.h \
   /Users/anishan/Project/qt/student_manage_system/statisticwidget.h \
   /Users/anishan/Project/qt/student_manage_system/studentwidget.h \
+  /Users/anishan/Project/qt/student_manage_system/titlebar.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCharts.framework/Versions/A/Headers/QAbstractAxis \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCharts.framework/Versions/A/Headers/QAbstractSeries \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCharts.framework/Versions/A/Headers/QChart \

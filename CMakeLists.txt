@@ -32,6 +32,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         scorewidget.h scorewidget.cpp scorewidget.ui
         comboboxdelegate.h comboboxdelegate.cpp
         scorechangedialog.h scorechangedialog.cpp scorechangedialog.ui
+        titlebar.h titlebar.cpp titlebar.ui
+        resource.qrc
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET student_manage_system APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

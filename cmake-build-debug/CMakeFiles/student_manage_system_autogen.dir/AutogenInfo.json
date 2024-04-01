@@ -344,7 +344,8 @@
 		"/Users/anishan/Qt/6.6.2/macos/lib/cmake/Qt6Charts/Qt6ChartsAdditionalTargetInfo.cmake",
 		"/Users/anishan/Qt/6.6.2/macos/lib/cmake/Qt6Charts/Qt6ChartsVersionlessTargets.cmake",
 		"/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.27/Modules/GNUInstallDirs.cmake",
-		"/Users/anishan/Qt/6.6.2/macos/lib/cmake/Qt6/macos/Info.plist.app.in"
+		"/Users/anishan/Qt/6.6.2/macos/lib/cmake/Qt6/macos/Info.plist.app.in",
+		"/Users/anishan/Project/qt/student_manage_system/resource.qrc"
 	],
 	"CMAKE_SOURCE_DIR" : "/Users/anishan/Project/qt/student_manage_system",
 	"DEP_FILE" : "/Users/anishan/Project/qt/student_manage_system/cmake-build-debug/student_manage_system_autogen/deps",
@@ -397,6 +398,12 @@
 			"/Users/anishan/Project/qt/student_manage_system/studentwidget.h",
 			"MU",
 			"EWIEGA46WW/moc_studentwidget.cpp",
+			null
+		],
+		[
+			"/Users/anishan/Project/qt/student_manage_system/titlebar.h",
+			"MU",
+			"EWIEGA46WW/moc_titlebar.cpp",
 			null
 		]
 	],
@@ -517,6 +524,11 @@
 		],
 		[
 			"/Users/anishan/Project/qt/student_manage_system/studentwidget.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/anishan/Project/qt/student_manage_system/titlebar.cpp",
 			"MU",
 			null
 		]

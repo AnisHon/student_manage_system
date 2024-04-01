@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "sidebar.h"
+#include "titlebar.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -18,9 +19,13 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
+private slots:
+    void moveWindowTo(int x, int y);
+
 private:
     Ui::MainWindow *ui;
     SideBar *sideBar;
+    TitleBar *titleBar;
 
 };
 #endif // MAINWINDOW_H
