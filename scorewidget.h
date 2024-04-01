@@ -32,13 +32,11 @@ private slots:
 
     void on_lineEdit_textChanged(const QString &arg1);
 
-    void on_addBtn_clicked();
-
     void on_changeBtn_clicked();
 
-    void on_deleteBtn_clicked();
-
     void on_refreshBtn_clicked();
+
+    void changeRow(const QModelIndex &current, const QModelIndex &previous);
 
 private:
     QSqlQuery queryForScore();

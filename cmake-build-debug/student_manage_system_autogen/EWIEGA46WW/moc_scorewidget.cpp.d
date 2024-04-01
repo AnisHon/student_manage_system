@@ -916,12 +916,14 @@
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qlatin1stringview.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qline.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qlist.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qlocale.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qlogging.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qmalloc.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qmap.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qmargins.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qmath.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qmetacontainer.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qmetaobject.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qmetatype.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qminmax.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qnamespace.h \
@@ -938,6 +940,7 @@
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qprocessordetection.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qrect.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qrefcount.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qregularexpression.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qscopedpointer.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qscopeguard.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qset.h \
@@ -1020,6 +1023,7 @@
   /Users/anishan/Qt/6.6.2/macos/lib/QtGui.framework/Versions/A/Headers/qtguiexports.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtGui.framework/Versions/A/Headers/qtguiglobal.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtGui.framework/Versions/A/Headers/qtransform.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtGui.framework/Versions/A/Headers/qvalidator.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtGui.framework/Versions/A/Headers/qvector2d.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtGui.framework/Versions/A/Headers/qvectornd.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
@@ -1027,11 +1031,16 @@
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/QSqlQuery \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/QSqlQueryModel \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/QSqlRecord \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/QSqlRelationalDelegate \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/QSqlRelationalTableModel \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/QSqlTableModel \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqldatabase.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqldriver.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqlquery.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqlquerymodel.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqlrecord.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqlrelationaldelegate.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqlrelationaltablemodel.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqltablemodel.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qtsql-config.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qtsqlexports.h \
@@ -1039,8 +1048,14 @@
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/QDialog \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/QGraphicsView \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/QGraphicsWidget \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/QMenu \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/QWidget \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractitemdelegate.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractitemview.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractscrollarea.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractslider.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qabstractspinbox.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qcombobox.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qdialog.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qframe.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qgraphicsitem.h \
@@ -1048,8 +1063,17 @@
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qgraphicsscene.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qgraphicsview.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qgraphicswidget.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qlistview.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qmenu.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qrubberband.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qscrollarea.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qsizepolicy.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qslider.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qstyle.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qstyleditemdelegate.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qstyleoption.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qtabbar.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qtabwidget.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qtwidgets-config.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsexports.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsglobal.h \

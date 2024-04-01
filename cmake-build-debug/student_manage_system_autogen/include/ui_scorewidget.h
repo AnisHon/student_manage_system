@@ -37,8 +37,6 @@ public:
     QComboBox *comboBox;
     QLineEdit *lineEdit;
     QGridLayout *gridLayout_2;
-    QPushButton *deleteBtn;
-    QPushButton *addBtn;
     QPushButton *refreshBtn;
     QPushButton *changeBtn;
     QFormLayout *formLayout_2;
@@ -85,25 +83,15 @@ public:
 
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setObjectName("gridLayout_2");
-        deleteBtn = new QPushButton(groupBox);
-        deleteBtn->setObjectName("deleteBtn");
-
-        gridLayout_2->addWidget(deleteBtn, 1, 0, 1, 1);
-
-        addBtn = new QPushButton(groupBox);
-        addBtn->setObjectName("addBtn");
-
-        gridLayout_2->addWidget(addBtn, 0, 0, 1, 1);
-
         refreshBtn = new QPushButton(groupBox);
         refreshBtn->setObjectName("refreshBtn");
 
-        gridLayout_2->addWidget(refreshBtn, 1, 1, 1, 1);
+        gridLayout_2->addWidget(refreshBtn, 1, 0, 1, 1);
 
         changeBtn = new QPushButton(groupBox);
         changeBtn->setObjectName("changeBtn");
 
-        gridLayout_2->addWidget(changeBtn, 0, 1, 1, 1);
+        gridLayout_2->addWidget(changeBtn, 0, 0, 1, 1);
 
 
         horizontalLayout->addLayout(gridLayout_2);
@@ -169,8 +157,6 @@ public:
         comboBox->setItemText(0, QCoreApplication::translate("ScoreWidget", "\346\220\234\347\264\242\345\220\215\345\255\227", nullptr));
         comboBox->setItemText(1, QCoreApplication::translate("ScoreWidget", "\346\220\234\347\264\242\345\255\246\345\217\267", nullptr));
 
-        deleteBtn->setText(QCoreApplication::translate("ScoreWidget", "\345\210\240\351\231\244\345\210\206\346\225\260", nullptr));
-        addBtn->setText(QCoreApplication::translate("ScoreWidget", "\346\267\273\345\212\240\345\210\206\346\225\260", nullptr));
         refreshBtn->setText(QCoreApplication::translate("ScoreWidget", "\345\210\267\346\226\260\345\210\227\350\241\250", nullptr));
         changeBtn->setText(QCoreApplication::translate("ScoreWidget", "\344\277\256\346\224\271\345\210\206\346\225\260", nullptr));
         Label->setText(QCoreApplication::translate("ScoreWidget", "\346\216\222\345\272\217\346\226\271\345\274\217", nullptr));

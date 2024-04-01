@@ -18,6 +18,7 @@ ScoreWidget::ScoreWidget(const QSqlDatabase& database, QWidget *parent)
 
     scoreChangeDialog = new ScoreChangeDialog(this);
 
+    connect(selectionModel, &QItemSelectionModel::currentRowChanged, this, &ScoreWidget::changeRow);
 
     loadSubjects();
     initModel();
@@ -105,6 +106,7 @@ void ScoreWidget::initModel() {
 
 
 //    qDebug() << model->lastError();
+
 }
 
 
@@ -152,28 +154,31 @@ void ScoreWidget::updateModel() {
 }
 
 
-void ScoreWidget::on_addBtn_clicked()
-{
-
-    updateModel();
-}
-
-
 void ScoreWidget::on_changeBtn_clicked()
 {
-
-    updateModel();
-}
-
-
-void ScoreWidget::on_deleteBtn_clicked()
-{
-    updateModel();
+    auto modelIndex = selectionModel->currentIndex();
+    if (!modelIndex.isValid()) {
+        return;
+    }
+    scoreChangeDialog->setModal(false);
+    scoreChangeDialog->show();
+    changeRow(modelIndex, modelIndex);
 }
 
 
 void ScoreWidget::on_refreshBtn_clicked()
 {
     updateModel();
+}
+
+void ScoreWidget::changeRow(const QModelIndex &current, const QModelIndex &previous) {
+    Q_UNUSED(previous);
+    if (scoreChangeDialog->isHidden()) {
+        return;
+    }
+    scoreChangeDialog->setName(model->data(model->index(current.row(), record.indexOf("name"))).toString());
+    scoreChangeDialog->setStudentId(model->data(model->index(current.row(), record.indexOf("id"))).toString());
+    scoreChangeDialog->setId(model->data(model->index(current.row(), record.indexOf("stu_id"))).toInt());
+
 }
 
