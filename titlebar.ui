@@ -7,13 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>772</width>
-    <height>20</height>
+    <height>30</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>30</height>
+   </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>16777215</width>
-    <height>20</height>
+    <height>30</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -24,6 +30,9 @@
 	background-color: transparent;
 	border: None;
 	margin: 0;
+}
+#closeBtn {
+	margin-top: -1px;
 }
 #closeBtn:hover {
 	background-color: rgba(255, 38, 0, 193);
@@ -63,7 +72,8 @@ QPushuButton:pressed {
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgba(224, 224, 222, 0.95);</string>
+      <string notr="true">background-color: rgba(224, 224, 222, 0.95);
+padding-top: 5px</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;学生管理系统&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -96,14 +106,14 @@ QPushuButton:pressed {
      </property>
      <property name="minimumSize">
       <size>
-       <width>25</width>
-       <height>25</height>
+       <width>30</width>
+       <height>30</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>25</width>
-       <height>25</height>
+       <width>30</width>
+       <height>30</height>
       </size>
      </property>
      <property name="toolTip">
@@ -144,14 +154,14 @@ QPushuButton:pressed {
     <widget class="QPushButton" name="closeBtn">
      <property name="minimumSize">
       <size>
-       <width>25</width>
-       <height>25</height>
+       <width>30</width>
+       <height>30</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>25</width>
-       <height>25</height>
+       <width>30</width>
+       <height>30</height>
       </size>
      </property>
      <property name="styleSheet">
@@ -179,6 +189,12 @@ QPushuButton:pressed {
        <width>20</width>
        <height>20</height>
       </size>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

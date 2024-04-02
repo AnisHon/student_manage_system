@@ -38,7 +38,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::moveWindowTo(int x, int y) {
 //    qDebug() << x << " " << y;
-    this->move(x, y);asdfsadf,.,`
+    this->move(x, y);
 }
 
 

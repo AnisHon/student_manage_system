@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
 
 
     w.show();
-//    app.setStyleSheet("StatisticWidget, IndexWidget, ScoreWidget, StatisticWidget, StudentWidget {background-color: #ECECEB}");
-
-    return app.exec();
+    app.setStyleSheet("QGroupBox { background-color: transparent; border: none; } QLineEdit {border: 1px solid black;}");
+    return QApplication::exec();
 }

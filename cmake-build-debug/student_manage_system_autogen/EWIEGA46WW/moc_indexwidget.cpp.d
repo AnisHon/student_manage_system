@@ -845,6 +845,7 @@
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/q20memory.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/q20type_traits.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/q23utility.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qabstractitemmodel.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qalgorithms.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qanystringview.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Versions/A/Headers/qarraydata.h \
@@ -978,6 +979,13 @@
   /Users/anishan/Qt/6.6.2/macos/lib/QtGui.framework/Versions/A/Headers/qtguiglobal.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtGui.framework/Versions/A/Headers/qtransform.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/QSqlTableModel \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqldatabase.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqlquerymodel.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qsqltablemodel.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qtsql-config.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qtsqlexports.h \
+  /Users/anishan/Qt/6.6.2/macos/lib/QtSql.framework/Versions/A/Headers/qtsqlglobal.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/QWidget \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qsizepolicy.h \
   /Users/anishan/Qt/6.6.2/macos/lib/QtWidgets.framework/Versions/A/Headers/qtwidgets-config.h \

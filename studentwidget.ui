@@ -17,8 +17,8 @@
    <string notr="true">
 StudentWidget QLineEdit {
 	border-radius: 5px;
-
 }
+
 
 
 </string>

@@ -874,6 +874,9 @@ student_manage_system_autogen/timestamp: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/xlocale/_time.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/15.0.0/include/stdarg.h \
   /Users/anishan/Project/qt/student_manage_system/CMakeLists.txt \
+  /Users/anishan/Project/qt/student_manage_system/circleprogressbar.cpp \
+  /Users/anishan/Project/qt/student_manage_system/circleprogressbar.h \
+  /Users/anishan/Project/qt/student_manage_system/circleprogressbar.ui \
   CMakeFiles/3.27.8/CMakeCXXCompiler.cmake \
   CMakeFiles/3.27.8/CMakeSystem.cmake \
   student_manage_system_autogen/moc_predefs.h \
@@ -882,6 +885,9 @@ student_manage_system_autogen/timestamp: \
   /Users/anishan/Project/qt/student_manage_system/indexwidget.cpp \
   /Users/anishan/Project/qt/student_manage_system/indexwidget.h \
   /Users/anishan/Project/qt/student_manage_system/indexwidget.ui \
+  /Users/anishan/Project/qt/student_manage_system/loginwindow.cpp \
+  /Users/anishan/Project/qt/student_manage_system/loginwindow.h \
+  /Users/anishan/Project/qt/student_manage_system/loginwindow.ui \
   /Users/anishan/Project/qt/student_manage_system/main.cpp \
   /Users/anishan/Project/qt/student_manage_system/mainwindow.cpp \
   /Users/anishan/Project/qt/student_manage_system/mainwindow.h \

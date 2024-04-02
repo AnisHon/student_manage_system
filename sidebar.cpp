@@ -28,7 +28,7 @@ SideBar::SideBar(QWidget *parent)
 
 void SideBar::initWidget() {
 
-    indexWidget = new IndexWidget(this);
+    indexWidget = new IndexWidget(db, this);
     studentWidget = new StudentWidget(db, this);
     scoreWidget = new ScoreWidget(db, this);
     statisticWidget = new StatisticWidget(this);

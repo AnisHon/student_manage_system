@@ -34,6 +34,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         scorechangedialog.h scorechangedialog.cpp scorechangedialog.ui
         titlebar.h titlebar.cpp titlebar.ui
         resource.qrc
+        loginwindow.h loginwindow.cpp loginwindow.ui
+        circleprogressbar.h circleprogressbar.cpp circleprogressbar.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET student_manage_system APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -84,3 +86,4 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(student_manage_system)
 endif()
 #target_include_directories(student_manage_system PUBLIC /Users/anishan/Project/qt/student_manage_system/sidebar.h)
+include_directories(./)

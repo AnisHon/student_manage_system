@@ -72,8 +72,8 @@ public:
         StudentWidget->setStyleSheet(QString::fromUtf8("\n"
 "StudentWidget QLineEdit {\n"
 "	border-radius: 5px;\n"
-"\n"
 "}\n"
+"\n"
 "\n"
 "\n"
 ""));

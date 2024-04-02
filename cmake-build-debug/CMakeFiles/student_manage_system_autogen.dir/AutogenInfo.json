@@ -353,6 +353,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/Users/anishan/Project/qt/student_manage_system/circleprogressbar.h",
+			"MU",
+			"EWIEGA46WW/moc_circleprogressbar.cpp",
+			null
+		],
+		[
 			"/Users/anishan/Project/qt/student_manage_system/comboboxdelegate.h",
 			"MU",
 			"EWIEGA46WW/moc_comboboxdelegate.cpp",
@@ -362,6 +368,12 @@
 			"/Users/anishan/Project/qt/student_manage_system/indexwidget.h",
 			"MU",
 			"EWIEGA46WW/moc_indexwidget.cpp",
+			null
+		],
+		[
+			"/Users/anishan/Project/qt/student_manage_system/loginwindow.h",
+			"MU",
+			"EWIEGA46WW/moc_loginwindow.cpp",
 			null
 		],
 		[
@@ -429,6 +441,7 @@
 	],
 	"MOC_INCLUDES" : 
 	[
+		"/Users/anishan/Project/qt/student_manage_system",
 		"/Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework/Headers",
 		"/Users/anishan/Qt/6.6.2/macos/lib/QtCore.framework",
 		"/Users/anishan/Qt/6.6.2/macos/mkspecs/macx-clang",
@@ -483,12 +496,22 @@
 	"SOURCES" : 
 	[
 		[
+			"/Users/anishan/Project/qt/student_manage_system/circleprogressbar.cpp",
+			"MU",
+			null
+		],
+		[
 			"/Users/anishan/Project/qt/student_manage_system/comboboxdelegate.cpp",
 			"MU",
 			null
 		],
 		[
 			"/Users/anishan/Project/qt/student_manage_system/indexwidget.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/anishan/Project/qt/student_manage_system/loginwindow.cpp",
 			"MU",
 			null
 		],
