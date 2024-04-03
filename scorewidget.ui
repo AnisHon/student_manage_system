@@ -139,10 +139,87 @@
     </widget>
    </item>
    <item>
-    <widget class="QTableView" name="tableView"/>
+    <widget class="QTableView" name="tableView">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+    </widget>
    </item>
   </layout>
+  <action name="inputAction">
+   <property name="text">
+    <string>导入</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="outputAction">
+   <property name="text">
+    <string>导出当前视图</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="changeAction">
+   <property name="text">
+    <string>修改分数</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="refreshAction">
+   <property name="text">
+    <string>刷新</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="outputAllAction">
+   <property name="text">
+    <string>导出数据库</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>changeAction</sender>
+   <signal>triggered()</signal>
+   <receiver>changeBtn</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>538</x>
+     <y>42</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>refreshAction</sender>
+   <signal>triggered()</signal>
+   <receiver>refreshBtn</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>538</x>
+     <y>76</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>538</x>
+     <y>76</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

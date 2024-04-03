@@ -2,7 +2,6 @@
 #include "ui_statisticwidget.h"
 
 #include <QPieSeries>
-#include <QPieSeries>
 #include <QSqlQuery>
 #include <QValueAxis>
 #include <QLineSeries>
@@ -79,9 +78,8 @@ void StatisticWidget::initLineChart() {
     QChart *pChart = ui->line->chart();
     auto *chart = new QChart();
     ui->line->setChart(chart);
-    if (pChart != nullptr) {
-        delete pChart;
-    }
+    delete pChart;
+
 
 
     auto axisX = new QValueAxis();
@@ -104,8 +102,9 @@ void StatisticWidget::initLineChart() {
     lineSeries->attachAxis(axisY);
 
     QMap<double, int> map = averageScores();
-    for (const auto &item: map.keys()) {
-        lineSeries->append(item, map[item]);
+    for (const auto &item: map.asKeyValueRange()) {
+        qDebug() << item;
+        lineSeries->append(item.first, item.second);
     }
     chart->setAnimationOptions(QChart::SeriesAnimations);
     chart->setTitle("分段人数");
@@ -123,9 +122,7 @@ void StatisticWidget::initBarChart(int i) {
 
     QVector<int> counts = {
             totalCountPreSubjectWithin(0, 19, i),
-//            totalCountPreSubjectWithin(10, 20, 1),
             totalCountPreSubjectWithin(20, 39, i),
-//            totalCountPreSubjectWithin(30, 40, 1),
             totalCountPreSubjectWithin(40, 59, i),
 //            totalCountPreSubjectWithin(50, 60, 1),
             totalCountPreSubjectWithin(60, 79, i),
@@ -144,7 +141,7 @@ void StatisticWidget::initBarChart(int i) {
     };
 
     auto *barSeries = new QBarSeries;
-    QBarSet *barSet = new QBarSet("人数");
+    auto *barSet = new QBarSet("人数");
     barSeries->append(barSet);
     barSeries->setName("分段人数");
 
@@ -181,8 +178,8 @@ void StatisticWidget::reloadCharts() {
 
     auto subjects = getSubjectNames();
     ui->ComboBox->clear();
-    for (const auto &item: subjects.keys()) {
-        ui->ComboBox->addItem(item, subjects[item]);
+    for (const auto &item: subjects.asKeyValueRange()) {
+        ui->ComboBox->addItem(item.first, item.second);
     }
     int id = ui->ComboBox->currentData().toInt();
     initPieChart();
@@ -233,7 +230,7 @@ QMap<double, int> StatisticWidget::averageScores() {
 
     QSqlQuery sqlQuery;
     sqlQuery.setForwardOnly(true);
-    sqlQuery.exec("select  average, count(*) from (select avg(score) as average from score group by stu_id) as sa group by sa.average;");
+    sqlQuery.exec("select  average, count(*) from (select avg(score) as average from score group by stu_id) as sa group by sa.average");
     while(sqlQuery.next()) {
         averages.insert(sqlQuery.value(0).toDouble(), sqlQuery.value(1).toInt());
     }

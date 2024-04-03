@@ -4,6 +4,7 @@
 #include <QBarCategoryAxis>
 #include <QTimer>
 
+
 CircleProgressBar::CircleProgressBar(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::CircleProgressBar)
@@ -19,6 +20,7 @@ CircleProgressBar::~CircleProgressBar()
 }
 
 void CircleProgressBar::paintEvent(QPaintEvent *event) {
+
     paintBar();
 }
 
@@ -37,6 +39,8 @@ void CircleProgressBar::setMax(int max) {
 void CircleProgressBar::paintBar() {
     if (display_ >= current_) {
         timer->stop();
+    } else {
+        display_++;
     }
     QPainter painter(this);
     auto rect = this->rect();
@@ -44,20 +48,26 @@ void CircleProgressBar::paintBar() {
     painter.setRenderHint(QPainter::Antialiasing);
     painter.setPen(Qt::PenStyle::NoPen);
     painter.translate(rect.width() / 2, rect.height() / 2);
+//    painter.scale(width * 0.9, width * 0.9);
 
     int w = -width / 2;
 
-    painter.setBrush(Qt::red);
-    painter.drawEllipse(w, w, width, width);
+//    painter.setBrush(QColor("#0ebeff"));
+//    painter.drawEllipse(w, w, width, width);
 
     int deg = 360 * 16 * display_ / max_;
 
-    painter.setBrush(Qt::blue);
-    painter.drawPie(w, w, width, width, 0, -deg);
+    QConicalGradient gradient(0, 0, 90);
+    gradient.setColorAt(0, "#0ebeff");
+    gradient.setColorAt(0.75, "#7987dd");
+    gradient.setColorAt(0.5, "#c95ec4");
+    gradient.setColorAt(1.0, "#ff42b3");
+    painter.setBrush(gradient);
+    painter.drawPie(w, w, width, width, 90 * 16, -deg);
 
     painter.setBrush(Qt::white);
     painter.drawEllipse(w * 0.8, w * 0.8, width * 0.8, width * 0.8);
-    display_++;
+
 }
 
 void CircleProgressBar::animationBar() {

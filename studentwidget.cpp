@@ -145,7 +145,14 @@ void StudentWidget::on_deleteStudent_clicked()
     QString name = model->data(model->index(ui->tableView->currentIndex().row(), model->fieldIndex("name")), Qt::EditRole).toString();
     QString student_id = model->data(model->index(ui->tableView->currentIndex().row(), model->fieldIndex("student_id")), Qt::EditRole).toString();
     QString msg = QString("你确定要删除%1(学号：%2)吗？\n在提交之前可以回滚所有删除").arg(name, student_id);
-    QMessageBox::information(this, "删除操作",msg, QMessageBox::Yes, QMessageBox::No);
+    auto result = QMessageBox::information(this, "删除操作",msg, QMessageBox::Yes, QMessageBox::No);
+    if (result == QMessageBox::Yes) {
+        int row = selectionModel->currentIndex().row();
+//        ui->tableView->setColumnHidden(row, true);
+        model->removeRow(row);
+
+//        qDebug() << selectionModel->currentIndex().row();
+    }
 
 }
 
@@ -228,6 +235,6 @@ void StudentWidget::mappingRowChanged(int index) {
         portrait_path = base_path + default_portrait;
     }
     QPixmap pixel(portrait_path);
-    pixel = pixel.scaledToHeight(200).scaledToWidth(200);
+    pixel = pixel.scaled(200, 200, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     ui->pictureLabel->setPixmap(pixel);
 }
