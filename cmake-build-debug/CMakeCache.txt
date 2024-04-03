@@ -316,8 +316,14 @@ Qt6WidgetsTools_DIR:PATH=/Users/anishan/Qt/6.6.2/macos/lib/cmake/Qt6WidgetsTools
 //The directory containing a CMake configuration file for Qt6Widgets.
 Qt6Widgets_DIR:PATH=/Users/anishan/Qt/6.6.2/macos/lib/cmake/Qt6Widgets
 
+//The directory containing a CMake configuration file for Qt6Xlsx.
+Qt6Xlsx_DIR:PATH=Qt6Xlsx_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for Qt6.
 Qt6_DIR:PATH=/Users/anishan/Qt/6.6.2/macos/lib/cmake/Qt6
+
+//The directory containing a CMake configuration file for Qt6xlsx.
+Qt6xlsx_DIR:PATH=Qt6xlsx_DIR-NOTFOUND
 
 //Path to a library.
 WrapOpenGL_AGL:FILEPATH=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk/System/Library/Frameworks/AGL.framework

@@ -2,6 +2,7 @@
 #define SCOREWIDGET_H
 
 #include "scorechangedialog.h"
+#include "CSVTool.h"
 
 #include <QWidget>
 #include <QSqlDatabase>
@@ -24,6 +25,9 @@ public:
     explicit ScoreWidget(const QSqlDatabase& database, QWidget *parent = nullptr);
     ~ScoreWidget() override;
 
+private slots:
+    void requestMenu(const QPoint &pos);
+
 
 private slots:
     void on_sortMethod_activated(int index);
@@ -38,12 +42,27 @@ private slots:
 
     void changeRow(const QModelIndex &current, const QModelIndex &previous);
 
+    void on_inputAction_triggered();
+
+    void on_outputAction_triggered();
+
+    void on_outputAllAction_triggered();
+
 private:
     QSqlQuery queryForScore();
     static QMap<int, QString> queryForSubjects();
     void initModel();
     void loadSubjects();
     void updateModel();
+    void initMenu();
+    static void headerValidate(const CSVTool& tool);
+    static QMap<int, int> mappingHeader(const QStringList& headers);
+
+    static int getStudentId(const QString& studentId);
+
+    static bool validateScore(const QString& str);
+
+    static void insertScore(int student_id, const QStringList &scores, const QMap<int, int> &map);
 private:
     Ui::ScoreWidget *ui;
     QSqlDatabase db;
@@ -58,6 +77,9 @@ private:
     QItemSelectionModel *selectionModel;
 
     ScoreChangeDialog *scoreChangeDialog;
+
+    QMenu *menu;
+
 
 };
 

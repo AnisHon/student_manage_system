@@ -6,6 +6,7 @@ SideBar::SideBar(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::SideBar)
 {
+
     ui->setupUi(this);
 
     db = QSqlDatabase::addDatabase("QMYSQL");

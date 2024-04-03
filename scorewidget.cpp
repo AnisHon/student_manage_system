@@ -1,13 +1,21 @@
 #include "scorewidget.h"
 #include "ui_scorewidget.h"
+#include "CSVTool.h"
 #include <QSqlRecord>
 #include <QSqlError>
+#include <QFileDialog>
+#include <QMessageBox>
+
 ScoreWidget::ScoreWidget(const QSqlDatabase& database, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::ScoreWidget)
 {
     ui->setupUi(this);
     db = database;
+
+
+    
+
 
     model = new QSqlTableModel(this);
     selectionModel = new QItemSelectionModel(model);
@@ -18,16 +26,31 @@ ScoreWidget::ScoreWidget(const QSqlDatabase& database, QWidget *parent)
 
     scoreChangeDialog = new ScoreChangeDialog(this);
 
-    connect(selectionModel, &QItemSelectionModel::currentRowChanged, this, &ScoreWidget::changeRow);
 
+
+
+    initMenu();
     loadSubjects();
     initModel();
 
+
+    connect(ui->tableView, &QTableView::customContextMenuRequested, this, &ScoreWidget::requestMenu);
+    connect(selectionModel, &QItemSelectionModel::currentRowChanged, this, &ScoreWidget::changeRow);
 }
 
 ScoreWidget::~ScoreWidget()
 {
     delete ui;
+}
+
+void ScoreWidget::initMenu() {
+    ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
+    menu = new QMenu;
+    menu->addAction(ui->changeAction);
+    menu->addAction(ui->refreshAction);
+    menu->addSeparator();
+    menu->addAction(ui->inputAction);
+    menu->addAction(ui->outputAction);
 }
 
 QSqlQuery ScoreWidget::queryForScore() {
@@ -181,4 +204,180 @@ void ScoreWidget::changeRow(const QModelIndex &current, const QModelIndex &previ
     scoreChangeDialog->setId(model->data(model->index(current.row(), record.indexOf("stu_id"))).toInt());
 
 }
+
+
+
+void ScoreWidget::on_inputAction_triggered()
+{
+    QString path = QFileDialog::getOpenFileName(this, "导入CSV", QDir::homePath(), "CSV文件(*.csv)");
+    try {
+        CSVTool tool(path);
+        headerValidate(tool);
+
+        const QStringList &header = tool.getHeader();
+        auto mapping = mappingHeader(header);
+        int index = header.indexOf("学号");
+
+        auto content = tool.readContent();
+
+        for (const auto &item: content) {
+            int stu_id = getStudentId(item[index]);
+            if (stu_id == -1) {
+                continue;
+            }
+            insertScore(stu_id, item, mapping);
+
+        }
+
+
+    } catch (std::runtime_error &error) {
+        QMessageBox::warning(this, "错误", error.what());
+    }
+
+
+
+
+
+
+}
+
+
+void ScoreWidget::on_outputAction_triggered()
+{
+
+    QString path = QFileDialog::getSaveFileName(this, "导出表", QDir::homePath(), "csv(*.csv)");
+    if (path.isEmpty()) {
+        return;
+    }
+    QStringList header;
+
+    for (int i = 1; i < model->columnCount(); ++i) {
+        header << model->headerData(i, Qt::Horizontal).toString();
+    }
+
+//    qDebug() << header;
+//    qDebug() << path;
+    QVector<QStringList> content;
+    for (int i = 0; i < model->rowCount(); ++i) {
+        QStringList row;
+        for (int j = 1; j < model->columnCount(); ++j) {
+
+            auto data1 = model->data(model->index(i, j));
+            row << (data1.isNull() ? "未选课" : data1.toString());
+
+        }
+        content << row;
+    }
+
+
+
+    try {
+        CSVTool csvTool(path);
+        csvTool.setHeader(header);
+        csvTool.writeContent(content);
+
+    } catch (std::runtime_error &err) {
+//        qDebug() << path;
+        QMessageBox::warning(this, "错误", err.what());
+    }
+
+
+}
+
+void ScoreWidget::requestMenu(const QPoint &pos) {
+    menu->exec(QCursor::pos());
+}
+
+void ScoreWidget::on_outputAllAction_triggered()
+{
+
+}
+
+void ScoreWidget::headerValidate(const CSVTool& tool) {
+    const QStringList &header = tool.getHeader();
+    if (header.isEmpty()) {
+        throw std::runtime_error("文件格式错误");
+    }
+    if (!header.contains("学号")) {
+        throw std::runtime_error("缺少学号，必须有学号作为学生身份唯一索引");
+    }
+}
+
+
+QMap<int, int> ScoreWidget::mappingHeader(const QStringList& headers) {
+    QMap<int, int> map;
+
+    QSqlQuery query;
+    query.prepare("select id from subject where name = :name");
+
+    for (int i = 0; i < headers.size(); ++i) {
+        query.bindValue(":name", headers[i]);
+        query.exec();
+        query.next();
+//        qDebug() << query.lastError();
+        if (query.isNull(0)) {
+            continue;
+        }
+        map.insert(i, query.value(0).toInt());
+    }
+    return map;
+}
+
+int ScoreWidget::getStudentId(const QString& studentId) {
+    QSqlQuery query;
+    query.setForwardOnly(true);
+    query.prepare("select id from student where student_id = :student_id");
+    query.bindValue(":student_id", studentId);
+    query.exec();
+    query.next();
+    if (query.isNull(0)) {
+        return -1;
+    }
+
+    return query.value(0).toInt();
+}
+
+bool ScoreWidget::validateScore(const QString& str) {
+    bool isNum;
+    int temp = str.toInt(&isNum);
+    return 0<= temp && temp <= 100 && isNum;
+}
+
+void ScoreWidget::insertScore(int student_id, const QStringList &scores, const QMap<int, int> &map) {
+    QSqlQuery insertQuery;
+    QSqlQuery existQuery;
+    QSqlQuery updateQuery;
+
+    insertQuery.prepare("insert into score(stu_id, subject_id, score) value(:stu_id, :sub_id, :score)");
+    existQuery.prepare("select count(*) from score where subject_id = :subject_id and stu_id = :stu_id");
+    updateQuery.prepare("update score set score = :score where subject_id = :subject_id and stu_id = :stu_id");
+    for (const auto &item: map.asKeyValueRange()) {
+        if (!validateScore(scores[item.first])) {
+            continue;
+        }
+        existQuery.bindValue(":stu_id", student_id);
+        existQuery.bindValue(":subject_id", item.second);
+        existQuery.exec();
+        existQuery.next();
+//        qDebug() << existQuery.value(0).toInt();
+//        qDebug() << existQuery.lastError().text();
+        if (existQuery.value(0).toInt() == 0) {
+            insertQuery.bindValue(":stu_id", student_id);
+            insertQuery.bindValue(":sub_id", item.second);
+            insertQuery.bindValue(":score", scores[item.first].toInt());
+            insertQuery.exec();
+//            qDebug() << insertQuery.lastError().text();
+        } else {
+            updateQuery.bindValue(":stu_id", student_id);
+            updateQuery.bindValue(":sub_id", item.second);
+            updateQuery.bindValue(":score", scores[item.first].toInt());
+            updateQuery.exec();
+//            qDebug() << existQuery.lastError().text();
+        }
+
+    }
+
+}
+
+
 
