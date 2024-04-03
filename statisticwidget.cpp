@@ -103,7 +103,7 @@ void StatisticWidget::initLineChart() {
 
     QMap<double, int> map = averageScores();
     for (const auto &item: map.asKeyValueRange()) {
-        qDebug() << item;
+//        qDebug() << item;
         lineSeries->append(item.first, item.second);
     }
     chart->setAnimationOptions(QChart::SeriesAnimations);
