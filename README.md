@@ -19,6 +19,7 @@ create table account
     teacher_id varchar(255) not null,
     password   varchar(255) not null,
     name       varchar(255) not null,
+    portrait   varchar(255) null,
     constraint account_pk
         unique (teacher_id)
 );
