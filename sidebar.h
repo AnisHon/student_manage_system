@@ -19,7 +19,7 @@ class SideBar : public QWidget
     Q_OBJECT
 
 public:
-    explicit SideBar(QWidget *parent = nullptr);
+    explicit SideBar(const QSqlDatabase& database, QWidget *parent = nullptr);
     ~SideBar() override;
 
 private slots:

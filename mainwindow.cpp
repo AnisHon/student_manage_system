@@ -3,14 +3,13 @@
 #include "loginwindow.h"
 #include <QBrush>
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(const QSqlDatabase &database, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
 
     ui->setupUi(this);
-
-    sideBar = new SideBar(this);
+    sideBar = new SideBar(database, this);
     titleBar = new TitleBar(this);
 
     ui->verticalLayout->addWidget(titleBar);

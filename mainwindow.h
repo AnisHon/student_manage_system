@@ -16,7 +16,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(const QSqlDatabase &database, QWidget *parent = nullptr);
     ~MainWindow() override;
 
 

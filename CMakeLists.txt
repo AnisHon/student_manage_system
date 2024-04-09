@@ -21,6 +21,7 @@ set(PROJECT_SOURCES
         mainwindow.ui
         CSVTool.cpp
         CSVTool.h
+        databaseconnectiondialog.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -42,6 +43,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         logo.rc
         genshin_impact.ico
             spinboxdelegate.h spinboxdelegate.cpp
+            properties.h properties.cpp
+            databaseconnectiondialog.h databaseconnectiondialog.cpp databaseconnectiondialog.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET student_manage_system APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

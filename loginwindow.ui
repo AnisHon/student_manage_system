@@ -178,12 +178,17 @@ QLineEdit:hover {
    </property>
    <property name="maximumSize">
     <size>
-     <width>100</width>
-     <height>100</height>
+     <width>70</width>
+     <height>70</height>
     </size>
    </property>
    <property name="styleSheet">
-    <string notr="true">border-radius: 999px;</string>
+    <string notr="true">
+	min-width:  100px;
+    max-width:  100px;
+    min-height: 100px;
+    max-height: 100px;
+	border-radius: 50px;</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::NoFrame</enum>

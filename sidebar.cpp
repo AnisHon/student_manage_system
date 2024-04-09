@@ -4,19 +4,16 @@
 #include <QPalette>
 #include <QMouseEvent>
 
-SideBar::SideBar(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::SideBar)
+SideBar::SideBar(const QSqlDatabase& database, QWidget *parent)
+    : QWidget(parent),
+    ui(new Ui::SideBar),
+    db(database)
+
 {
 
     ui->setupUi(this);
 
-    db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("localhost");
-    db.setDatabaseName("db_qt01");
-    db.setUserName("anishan");
-    db.setPassword("Han123456");
-    db.open();
+
 
 
     pointers = {ui->indexBtn, ui->scoreBtn, ui->studentBtn, ui->statisticBtn};
