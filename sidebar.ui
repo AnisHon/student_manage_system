@@ -58,8 +58,11 @@
 	padding: 40% 0;
 }
 #bar&gt;QPushButton {
-	height: 60px;
+	
 	background-color: transparent;
+	margin: 0 5px;
+	border-radius: 5px;
+	height: 60px;
 	color: #242423;
 	border: None;
 		

@@ -48,7 +48,17 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEdit"/>
+           <widget class="QLineEdit" name="lineEdit">
+            <property name="inputMask">
+             <string/>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="placeholderText">
+             <string>   搜索框</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -56,6 +66,13 @@
       </item>
       <item>
        <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="changeBtn">
+          <property name="text">
+           <string>修改分数</string>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="0">
          <widget class="QPushButton" name="refreshBtn">
           <property name="text">
@@ -63,10 +80,10 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QPushButton" name="changeBtn">
-          <property name="text">
-           <string>修改分数</string>
+        <item row="2" column="0">
+         <widget class="QSpinBox" name="pageIndex">
+          <property name="suffix">
+           <string>页</string>
           </property>
          </widget>
         </item>
@@ -180,7 +197,7 @@
   </action>
   <action name="outputAllAction">
    <property name="text">
-    <string>导出数据库</string>
+    <string>导出所有</string>
    </property>
    <property name="menuRole">
     <enum>QAction::NoRole</enum>

@@ -1,0 +1,145 @@
+QGroupBox {
+    background-color: transparent;
+    border: none;
+}
+QLineEdit {
+    border: 1px solid black;
+}
+QPushButton {
+    padding: 5px 12px;
+    background-color: #FFF;
+    border-radius: 4px;
+    border: 1px solid #DCDFE6;
+}
+QPushButton:hover {
+    border-color: #409EFF;
+    background-color: #ECF5FF;
+    color: #409EFF;
+}
+
+QLineEdit {
+    padding: 5px;
+    border-color: #DCDFE6;
+    border-radius: 4px;
+/*    selection-background-color: #409EFF;*/
+}
+
+QLineEdit:hover {
+    border-color: lightsteelblue;
+}
+
+QComboBox {
+    border-radius: 4px;
+    border: 1px solid #DCDFE6;
+    padding: 5px 10px;
+}
+
+QComboBox:hover {
+    border-color: lightsteelblue;
+}
+
+QComboBox::down-arrow {
+    border-image: url(:/style/qss/xiangxiajiantou.png);
+}
+
+QComboBox::drop-down {
+    background-color: #FFF;
+}
+
+QComboBox::drop-down:hover {
+    background-color: #ecf5ff;
+}
+
+QSpinBox {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #DCDFE6;
+    background-color: #FFF;
+}
+
+QSpinBox:hover {
+    border-color: lightsteelblue;
+}
+QSpinBox::up-button {
+    margin-right: 2px;
+    border-image: url(:/style/qss/xiangshangjiantou.png);
+}
+QSpinBox::down-button {
+    margin-right: 2px;
+    border-image: url(:/style/qss/xiangxiajiantou.png);
+}
+
+QSpinBox::up-button:hover,
+QSpinBox::down-button:hover {
+    background-color: #ECF5FF;
+}
+
+QTableView {
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid #DCDFE6;
+    background-color: #FFF;
+    gridline-color: #FFF;
+}
+
+
+QTableView::verticalHeader QHeaderView::section {
+    border: none;
+    border-bottom: 1px solid #EEF0F6;
+    background-color: #FFF;
+    font-size: 14px;
+    font-weight: 700;
+    color: #909399;
+}
+QTableView::horizontalHeader QHeaderView::section {
+    border: none;
+    border-bottom: 1px solid #EEF0F6;
+    background-color: #FFF;
+    font-size: 14px;
+    font-weight: 700;
+    color: #909399;
+}
+QTableView::item {
+
+    background-color: #ffffff;
+    border-bottom: 1px solid #EBEEF5;
+    font-size: 14;
+    text-align: center;
+    color: #606266;
+}
+
+QTableView::item:alternate {
+    background-color: #FAFAFA;
+}
+
+QTableView::item:selected {
+    color: #409EFF;
+}
+/*background-color: #f5f7fa;*/
+
+
+QHeaderView::section, QTableCornerButton::section {
+    padding: 1px;
+    border: none;
+
+    background-color: #FFF;
+}
+
+QListView {
+    border-radius: 4px;
+    border: 1px solid #DCDFE6;
+    background-color: #FFF;
+    show-decoration-selected:1;
+}
+
+QListView::item {
+    color: #606266;
+    font-size: 14;
+}
+
+#bar,
+#pie,
+#line {
+    background-color: #FFF;
+
+}

@@ -28,7 +28,9 @@ void CircleProgressBar::setCurrentIndex(int index) {
     display_ = current_;
     current_ = index;
     timer->setInterval(10);
+    timer->stop();
     timer->start();
+//    qDebug() << 1;
 
 }
 
@@ -37,8 +39,10 @@ void CircleProgressBar::setMax(int max) {
 }
 
 void CircleProgressBar::paintBar() {
-    if (display_ >= current_) {
+    if (display_ == current_) {
         timer->stop();
+    } else if (display_ > current_){
+        display_--;
     } else {
         display_++;
     }
@@ -72,4 +76,9 @@ void CircleProgressBar::paintBar() {
 
 void CircleProgressBar::animationBar() {
     QWidget::update();
+//    qDebug() << current_;
+}
+
+void CircleProgressBar::setText(const QString &text) {
+    ui->label->setText(text);
 }

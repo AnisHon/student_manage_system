@@ -13,8 +13,10 @@ ScoreWidget::ScoreWidget(const QSqlDatabase& database, QWidget *parent)
     ui->setupUi(this);
     db = database;
 
+    ui->pageIndex->setMinimum(1);
+    ui->pageIndex->setValue(1);
+    ui->pageIndex->setMaximum(queryAllCount() / ROW_COUNT + 1);
 
-    
 
 
     model = new QSqlTableModel(this);
@@ -23,7 +25,8 @@ ScoreWidget::ScoreWidget(const QSqlDatabase& database, QWidget *parent)
     ui->tableView->setSelectionModel(selectionModel);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
-
+    ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     scoreChangeDialog = new ScoreChangeDialog(this);
 
 
@@ -51,12 +54,13 @@ void ScoreWidget::initMenu() {
     menu->addSeparator();
     menu->addAction(ui->inputAction);
     menu->addAction(ui->outputAction);
+    menu->addAction(ui->outputAllAction);
 }
 
 QSqlQuery ScoreWidget::queryForScore() {
-    QString mainSql = "select stu.id as stu_id, stu.student_id as id, stu.name as name, %1 sum(score.score) as total, avg(score.score) as average from score "
+    QString mainSql = "select stu.id as stu_id, stu.student_id as id, stu.name as name, %1 sum(score.score) as 总分, avg(score.score) as 平均分 from score "
                       "left join student stu on score.stu_id = stu.id "
-                      "left join subject on score.subject_id = subject.id ";
+                      "left join subject on score.subject_id = subject.id";
 
     QString conditionalAggregation = "MAX(case when score.subject_id = %1 then score.score end) as %2,";
     QString aggregation;
@@ -67,8 +71,9 @@ QSqlQuery ScoreWidget::queryForScore() {
     }
     mainSql = mainSql.arg(aggregation);
 
+
     if (!filter.isEmpty()) {
-        mainSql += "where " + filter;
+        mainSql += " where " + filter;
     }
     mainSql += " group by stu_id";
     if (sortColumn != -1) {
@@ -86,7 +91,9 @@ QSqlQuery ScoreWidget::queryForScore() {
 
 
 
-    QSqlQuery query(mainSql);
+    QSqlQuery query(mainSql + QString(" limit %1, %2").arg((currentIndex - 1) * ROW_COUNT).arg(ROW_COUNT));
+
+//    qDebug() << (mainSql + QString(" limit %1, %2").arg((currentIndex - 1) * ROW_COUNT).arg(ROW_COUNT));
 //    qDebug() << mainSql.arg(aggregation);
     return query;
 }
@@ -114,9 +121,9 @@ void ScoreWidget::initModel() {
     // id is student_id not primary key
     model->setHeaderData(record.indexOf("id"), Qt::Horizontal, "学号");
     model->setHeaderData(record.indexOf("name"), Qt::Horizontal, "姓名");
-    model->setHeaderData(record.indexOf("total"), Qt::Horizontal, "总分");
-    model->setHeaderData(record.indexOf("average"), Qt::Horizontal, "平均分");
-    model->setSort(model->fieldIndex("average"), Qt::DescendingOrder);
+//    model->setHeaderData(record.indexOf("total"), Qt::Horizontal, "总分");
+//    model->setHeaderData(record.indexOf("average"), Qt::Horizontal, "平均分");
+//    model->setSort(model->fieldIndex("average"), Qt::DescendingOrder);
     // primary key is stu_id;
     ui->tableView->setColumnHidden(model->fieldIndex("stu_id"), true);
 
@@ -148,7 +155,7 @@ void ScoreWidget::on_sortColumn_activated(int index)
 {
 
     Q_UNUSED(index);
-    qDebug() << ui->sortColumn->currentData().toInt();
+//    qDebug() << ui->sortColumn->currentData().toInt();
     sortColumn = ui->sortColumn->currentData().toInt();
     updateModel();
 }
@@ -173,7 +180,8 @@ void ScoreWidget::updateModel() {
     ui->sortColumn->clear();
     initModel();
     ui->sortColumn->setCurrentText(current);
-//    qDebug() << model->lastError();
+
+//    qDebug() << model->lastError().text();
 }
 
 
@@ -192,6 +200,10 @@ void ScoreWidget::on_changeBtn_clicked()
 void ScoreWidget::on_refreshBtn_clicked()
 {
     updateModel();
+    ui->pageIndex->setMinimum(1);
+    ui->pageIndex->setValue(currentIndex);
+    ui->pageIndex->setMaximum(queryAllCount() / ROW_COUNT + 1);
+    currentIndex = ui->pageIndex->value();
 }
 
 void ScoreWidget::changeRow(const QModelIndex &current, const QModelIndex &previous) {
@@ -291,6 +303,55 @@ void ScoreWidget::requestMenu(const QPoint &pos) {
 void ScoreWidget::on_outputAllAction_triggered()
 {
 
+    QString path = QFileDialog::getSaveFileName(this, "导出表", QDir::homePath(), "csv(*.csv)");
+    if (path.isEmpty()) {
+        return;
+    }
+
+    QString mainSql = "select stu.id as stu_id, stu.student_id as id, stu.name as name, %1 sum(score.score) as 总分, avg(score.score) as 平均分 from score "
+                      "left join student stu on score.stu_id = stu.id "
+                      "left join subject on score.subject_id = subject.id";
+
+    QString conditionalAggregation = "MAX(case when score.subject_id = %1 then score.score end) as %2,";
+    QString aggregation;
+
+    for (const auto &item: subjects.asKeyValueRange()) {
+        aggregation += QString(conditionalAggregation).arg(item.first).arg(item.second);
+    }
+    mainSql = mainSql.arg(aggregation);
+    mainSql += " group by stu_id";
+
+    QSqlQuery query(mainSql);
+
+    QStringList header;
+    auto sqlRecord = query.record();
+    for (int i = 1; i < sqlRecord.count(); ++i) {
+        header << sqlRecord.fieldName(i);
+    }
+
+//    qDebug() << header;
+//    qDebug() << path;
+    QVector<QStringList> content;
+    while (query.next()) {
+        QStringList row;
+        for (int j = 1; j < sqlRecord.count(); ++j) {
+            auto data1 = query.value(j);
+            row << (data1.isNull() ? "未选课" : data1.toString());
+        }
+        content << row;
+    }
+    try {
+        CSVTool csvTool(path);
+        csvTool.setHeader(header);
+        csvTool.writeContent(content);
+
+    } catch (std::runtime_error &err) {
+//        qDebug() << path;
+        QMessageBox::warning(this, "错误", err.what());
+    }
+
+
+
 }
 
 void ScoreWidget::headerValidate(const CSVTool& tool) {
@@ -381,3 +442,17 @@ void ScoreWidget::insertScore(int student_id, const QStringList &scores, const Q
 
 
 
+
+void ScoreWidget::on_pageIndex_editingFinished()
+{
+    currentIndex = ui->pageIndex->value();
+    updateModel();
+//    qDebug() << model->lastError().text();
+}
+
+int ScoreWidget::queryAllCount() {
+    QSqlQuery query;
+    query.exec("select count(*) from student");
+    query.next();
+    return query.value(0).toInt();
+}

@@ -1,6 +1,8 @@
 #include "sidebar.h"
 #include "ui_sidebar.h"
+#include "mainwindow.h"
 #include <QPalette>
+#include <QMouseEvent>
 
 SideBar::SideBar(QWidget *parent)
     : QWidget(parent)
@@ -14,13 +16,15 @@ SideBar::SideBar(QWidget *parent)
     db.setDatabaseName("db_qt01");
     db.setUserName("anishan");
     db.setPassword("Han123456");
-    qDebug() << db.open();
+    db.open();
 
 
     pointers = {ui->indexBtn, ui->scoreBtn, ui->studentBtn, ui->statisticBtn};
+
     for (const auto &item: pointers) {
-        connect(item, &QPushButton::clicked, this, &SideBar::changePage);
+        item->installEventFilter(this);
     }
+
 
 
 
@@ -42,11 +46,14 @@ void SideBar::initWidget() {
     ui->conetent->addWidget(studentWidget);
     ui->conetent->addWidget(statisticWidget);
 
-    qDebug() << ui->conetent->count();
+//    qDebug() << ui->conetent->count();
 
     ui->conetent->setCurrentIndex(0);
     ui->indexBtn->setChecked(true);
 
+
+    auto mainWindow = dynamic_cast<MainWindow *>(parent());
+    connect(mainWindow, &MainWindow::setWelcomeTitle, indexWidget, &IndexWidget::initWelcomeTitle);
 
 
 }
@@ -55,9 +62,11 @@ SideBar::~SideBar()
     delete ui;
 }
 
-void SideBar::changePage() {
-    auto *sender = dynamic_cast<QPushButton *>(QObject::sender());
-    sender->setChecked(false);
+void SideBar::changePage(QPushButton *sender) {
+//    sender->setChecked(false);
+    if (sender->isChecked()) {
+        return;
+    }
     if (ui->conetent->currentIndex() == 2 && sender != ui->studentBtn) {
         if (!dynamic_cast<StudentWidget*>(ui->conetent->currentWidget())->changePage()) {
             return;
@@ -74,6 +83,23 @@ void SideBar::changePage() {
     int i = (int)pointers.indexOf(sender);
     ui->conetent->setCurrentIndex(i);
 
+}
+
+bool SideBar::eventFilter(QObject *watched, QEvent *event) {
+    if (event->type() == QEvent::MouseButtonPress || event->type() == QEvent::MouseButtonDblClick) {
+        auto btn = dynamic_cast<QMouseEvent *>(event)->button();
+        if (btn != Qt::LeftButton) {
+            return false;
+        }
+        for (const auto &item: pointers) {
+            if (watched == item) {
+//                qDebug() << 1;
+                changePage(dynamic_cast<QPushButton *>(watched));
+                return true;
+            }
+        }
+    }
+    return QObject::eventFilter(watched, event);
 }
 
 

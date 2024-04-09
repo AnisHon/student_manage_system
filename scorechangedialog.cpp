@@ -1,5 +1,6 @@
 #include "scorechangedialog.h"
 #include "ui_scorechangedialog.h"
+#include "spinboxdelegate.h"
 #include <QSqlRelation>
 #include <QMessageBox>
 #include <QSqlError>
@@ -28,6 +29,7 @@ ScoreChangeDialog::ScoreChangeDialog(QWidget *parent)
     ui->tableView->setColumnHidden(model->fieldIndex("id"), true);
     ui->tableView->setColumnHidden(model->fieldIndex("stu_id"), true);
     ui->tableView->setItemDelegate(new QSqlRelationalDelegate(ui->tableView));
+    ui->tableView->setItemDelegateForColumn(model->fieldIndex("score"), new SpinBoxDelegate(this));
 
     model->setRelation(model->fieldIndex("subject_id"), QSqlRelation("subject", "id", "name"));
 

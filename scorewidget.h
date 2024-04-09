@@ -48,6 +48,8 @@ private slots:
 
     void on_outputAllAction_triggered();
 
+    void on_pageIndex_editingFinished();
+
 private:
     QSqlQuery queryForScore();
     static QMap<int, QString> queryForSubjects();
@@ -63,6 +65,9 @@ private:
     static bool validateScore(const QString& str);
 
     static void insertScore(int student_id, const QStringList &scores, const QMap<int, int> &map);
+
+    static int queryAllCount();
+
 private:
     Ui::ScoreWidget *ui;
     QSqlDatabase db;
@@ -79,6 +84,9 @@ private:
     ScoreChangeDialog *scoreChangeDialog;
 
     QMenu *menu;
+
+    int currentIndex = 1;
+    const int ROW_COUNT = 15;
 
 
 };

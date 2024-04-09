@@ -1,10 +1,12 @@
 #include "titlebar.h"
 #include "ui_titlebar.h"
+#include "mainwindow.h"
 #include <QKeyEvent>
 #include <QMoveEvent>
 TitleBar::TitleBar(QWidget *parent)
     : QWidget(parent)
-    , ui(new Ui::TitleBar)
+    , ui(new Ui::TitleBar),
+    parent(parent)
 {
     ui->setupUi(this);
 }
@@ -48,5 +50,13 @@ void TitleBar::mouseMoveEvent(QMouseEvent *event) {
 
     }
     QWidget::mouseMoveEvent(event);
+}
+
+
+void TitleBar::on_pushButton_clicked()
+{
+    auto main = dynamic_cast<MainWindow *>(parent);
+    main->requestLogout();
+
 }
 

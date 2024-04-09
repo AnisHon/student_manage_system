@@ -23,11 +23,13 @@ public:
     ~SideBar() override;
 
 private slots:
-    void changePage();
+    void changePage(QPushButton *sender);
 
 private:
     void initWidget();
 
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
 
 
@@ -35,10 +37,10 @@ private:
     Ui::SideBar *ui;
     QVector<QPushButton *> pointers;
 
-    IndexWidget *indexWidget;
-    StudentWidget *studentWidget;
-    ScoreWidget *scoreWidget;
-    StatisticWidget *statisticWidget;
+    IndexWidget *indexWidget{};
+    StudentWidget *studentWidget{};
+    ScoreWidget *scoreWidget{};
+    StatisticWidget *statisticWidget{};
     QSqlDatabase db;
 
 };

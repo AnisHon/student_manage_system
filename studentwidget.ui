@@ -104,6 +104,9 @@ StudentWidget QLineEdit {
               <height>0</height>
              </size>
             </property>
+            <property name="placeholderText">
+             <string>  搜索框</string>
+            </property>
            </widget>
           </item>
          </layout>

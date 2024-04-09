@@ -30,10 +30,13 @@ private slots:
     void on_closeBtn_clicked();
 
 
+    void on_pushButton_clicked();
+
 private:
     Ui::TitleBar *ui;
     bool isMovable = false;
     QPoint beginPos;
+    QWidget *parent;
 };
 
 #endif // TITLEBAR_H

@@ -4,8 +4,10 @@
 #include <QFileInfo>
 #include <QPixmap>
 #include <QFileDialog>
+#include <QSqlQuery>
 #include "studentwidget.h"
 #include "ui_studentwidget.h"
+#include "aligncenterdelegate.h"
 
 StudentWidget::StudentWidget(const QSqlDatabase &database, QWidget *parent)
     : QWidget(parent)
@@ -33,6 +35,7 @@ StudentWidget::~StudentWidget()
 void StudentWidget::initTable() {
     ui->tableView->setSelectionMode(QAbstractItemView::SelectionMode::SingleSelection);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableView->setAlternatingRowColors(true);
 
     model = new QSqlTableModel(this, db);
     model->setTable("student");
@@ -68,6 +71,16 @@ void StudentWidget::initTable() {
 
 
     mapper->toFirst();
+
+
+
+    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
+
+
+//    limit = "limit 0, 20";
+//    model->setFilter(limit);
+//    model->select();
 
     connect(mapper, &QDataWidgetMapper::currentIndexChanged, this, &StudentWidget::mappingRowChanged);
     connect(selectionModel, &QItemSelectionModel::currentRowChanged, this, &StudentWidget::changeMappingRow);
@@ -238,3 +251,16 @@ void StudentWidget::mappingRowChanged(int index) {
     pixel = pixel.scaled(200, 200, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
     ui->pictureLabel->setPixmap(pixel);
 }
+
+int StudentWidget::queryAllCount() {
+    QSqlQuery query;
+    query.exec("select count(*) from student");
+    query.next();
+    return query.value(0).toInt();
+}
+
+//void StudentWidget::on_pageSpan_valueChanged(int arg1)
+//{
+//    limit = QString("limit %1, %2")
+//}
+

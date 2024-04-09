@@ -21,6 +21,7 @@ StatisticWidget::StatisticWidget(QWidget *parent)
     ui->line->setChart(new QChart);
     ui->bar->setChart(new QChart);
     reloadCharts();
+
 }
 
 StatisticWidget::~StatisticWidget()
@@ -230,7 +231,7 @@ QMap<double, int> StatisticWidget::averageScores() {
 
     QSqlQuery sqlQuery;
     sqlQuery.setForwardOnly(true);
-    sqlQuery.exec("select  average, count(*) from (select avg(score) as average from score group by stu_id) as sa group by sa.average");
+    sqlQuery.exec("select  average, count(*) from (select FLOOR(avg(score) / 5) * 5 as average from score group by stu_id) as sa group by sa.average");
     while(sqlQuery.next()) {
         averages.insert(sqlQuery.value(0).toDouble(), sqlQuery.value(1).toInt());
     }

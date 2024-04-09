@@ -19,8 +19,17 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
+
 private slots:
     void moveWindowTo(int x, int y);
+
+signals:
+    void logout();
+
+    void setWelcomeTitle(const QString& name, const QString& path);
+
+public:
+    void requestLogout();
 
 private:
     Ui::MainWindow *ui;

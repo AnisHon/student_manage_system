@@ -6,5 +6,14 @@
         <file>icon/tubiao-zhexiantu.png</file>
         <file>icon/xuesheng.png</file>
         <file>portraits/default_portrait.png</file>
+        <file>icon/lock.png</file>
+        <file>icon/logout.png</file>
+        <file>icon/user.png</file>
+    </qresource>
+    <qresource prefix="/style">
+        <file>qss/main-style.qss</file>
+        <file>qss/xiangshangjiantou.png</file>
+        <file>qss/xiangxiajiantou.png</file>
+        <file>qss/banner.jpg</file>
     </qresource>
 </RCC>

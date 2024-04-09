@@ -27,6 +27,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QPushButton {
+	border-radius: 0;
 	background-color: transparent;
 	border: None;
 	margin: 0;
@@ -127,7 +128,7 @@ padding-top: 5px</string>
      </property>
      <property name="icon">
       <iconset resource="resource.qrc">
-       <normaloff>:/icon/icon/xuesheng.png</normaloff>:/icon/icon/xuesheng.png</iconset>
+       <normaloff>:/icon/icon/logout.png</normaloff>:/icon/icon/logout.png</iconset>
      </property>
      <property name="iconSize">
       <size>

@@ -17,7 +17,7 @@ class StudentWidget : public QWidget
 
 public:
     explicit StudentWidget(const QSqlDatabase& database, QWidget *parent = nullptr);
-    ~StudentWidget();
+    ~StudentWidget() override;
 
 private slots:
     void on_genderBox_currentTextChanged(const QString &arg1);
@@ -38,10 +38,14 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+//    void on_pageSpan_valueChanged(int arg1);
+
 private:
     void changeMappingRow(const QModelIndex &current, const QModelIndex &previous);
 
     void mappingRowChanged(int index);
+
+    int queryAllCount();
 
 private:
     void initTable();
@@ -61,6 +65,8 @@ private:
     QDataWidgetMapper *mapper;
     QSqlDatabase db;
     ComboBoxDelegate *comboBoxDelegate;
+
+//    QString limit;
 
 
 };

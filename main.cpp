@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "sidebar.h"
+#include "loginwindow.h"
 #include <QApplication>
 #include <QStyle>
 #include <QStyleFactory>
@@ -7,9 +8,20 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    // 设置应用程序的颜色方案
+    QFile file(":/style/qss/main-style.qss");
+    file.open(QIODevice::ReadOnly);
+    auto array = file.readAll();
+    app.setStyleSheet(QString::fromUtf8(array));
+
+
+
+
+
+
     MainWindow w;
-    w.show();
-    app.setStyleSheet("QGroupBox { background-color: transparent; border: none; } QLineEdit {border: 1px solid black;}");
+    LoginWindow login(&w);
+    login.show();
+
+
     return QApplication::exec();
 }

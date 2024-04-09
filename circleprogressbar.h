@@ -13,7 +13,7 @@ class CircleProgressBar : public QWidget
 
 public:
     explicit CircleProgressBar(QWidget *parent = nullptr);
-    ~CircleProgressBar();
+    ~CircleProgressBar() override;
 
     void paintEvent(QPaintEvent *event) override;
 
@@ -21,11 +21,14 @@ public:
 
     void setMax(int max);
 
+    void setText(const QString &text);
+
 private slots:
     void animationBar();
 
 private:
     void paintBar();
+
 
 private:
     Ui::CircleProgressBar *ui;
