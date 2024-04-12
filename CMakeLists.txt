@@ -22,6 +22,8 @@ set(PROJECT_SOURCES
         CSVTool.cpp
         CSVTool.h
         databaseconnectiondialog.cpp
+        LimitedQSqlTableModel.cpp
+        LimitedQSqlTableModel.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

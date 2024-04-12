@@ -9,15 +9,14 @@
 #include <QSqlRecord>
 #include <QRandomGenerator>
 
-IndexWidget::IndexWidget(const QSqlDatabase& database, QWidget *parent)
+IndexWidget::IndexWidget(QWidget *parent)
     : QWidget(parent),
-    ui(new Ui::IndexWidget),
-    db{database}
+    ui(new Ui::IndexWidget)
 {
     ui->setupUi(this);
 
     ui->portrait->setPixmap(QPixmap(":/icon/portraits/default_portrait.png").scaledToHeight(ui->portrait->height()));
-    ui->name->setText("<h2>您好 🤪👉👈🤣</h2>");
+    ui->name->setText("<h2></h2>");
 
     initModel();
 
@@ -77,6 +76,7 @@ void IndexWidget::setTimeLabel() {
 }
 
 void IndexWidget::setDatabaseLabel() {
+    QSqlDatabase db = QSqlDatabase::database();
     ui->database->setText(QString("数据库：%1").arg(db.driverName()));
     ui->table->setText(QString("库名称：%1").arg(db.databaseName()));
 
@@ -103,7 +103,7 @@ void IndexWidget::initMenu() {
     menu = new QMenu(this);
     menu->addAction(ui->addAction);
     menu->addAction(ui->delAction);
-    menu->addAction("123");
+//    menu->addAction("123");
 }
 
 void IndexWidget::on_addAction_triggered()

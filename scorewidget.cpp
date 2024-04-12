@@ -6,12 +6,11 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-ScoreWidget::ScoreWidget(const QSqlDatabase& database, QWidget *parent)
+ScoreWidget::ScoreWidget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::ScoreWidget)
 {
     ui->setupUi(this);
-    db = database;
 
     ui->pageIndex->setMinimum(1);
     ui->pageIndex->setValue(1);

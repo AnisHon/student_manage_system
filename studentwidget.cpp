@@ -9,12 +9,11 @@
 #include "ui_studentwidget.h"
 #include "aligncenterdelegate.h"
 
-StudentWidget::StudentWidget(const QSqlDatabase &database, QWidget *parent)
+StudentWidget::StudentWidget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::StudentWidget)
 {
     ui->setupUi(this);
-    db = database;
 
     ui->ageBox->setSuffix("岁");
     comboBoxDelegate = new ComboBoxDelegate({"男", "女"});
@@ -25,6 +24,8 @@ StudentWidget::StudentWidget(const QSqlDatabase &database, QWidget *parent)
     ui->pictureLabel->setGeometry(geometry);
 
     initTable();
+    initMenu();
+    initLimitPage();
 }
 
 StudentWidget::~StudentWidget()
@@ -32,12 +33,21 @@ StudentWidget::~StudentWidget()
     delete ui;
 }
 
+void StudentWidget::initMenu() {
+    ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
+    this->menu = new QMenu(this);
+    this->menu->addAction(ui->insert);
+    this->menu->addAction(ui->deleteStu);
+    this->menu->addAction(ui->commit);
+    this->menu->addAction(ui->rollback);
+}
+
 void StudentWidget::initTable() {
     ui->tableView->setSelectionMode(QAbstractItemView::SelectionMode::SingleSelection);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableView->setAlternatingRowColors(true);
 
-    model = new QSqlTableModel(this, db);
+    model = new LimitedQSqlTableModel(this);
     model->setTable("student");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->setSort(model->fieldIndex("id"), Qt::AscendingOrder);
@@ -118,15 +128,16 @@ void StudentWidget::on_searchEdit_editingFinished()
 void StudentWidget::on_searchEdit_textChanged(const QString &arg1)
 {
     switch (ui->searchMethod->currentIndex()) {
-        case 0:
-            model->setFilter(QString("name like '%%1%'").arg(ui->searchEdit->text()));
+        case NAME:
+            searchFilter = QString("name like '%%1%'").arg(ui->searchEdit->text());
             break;
-        case 1:
-            model->setFilter(QString("student_id like '%%1%'").arg(ui->searchEdit->text()));
+        case ID:
+            searchFilter = QString("student_id like '%%1%'").arg(ui->searchEdit->text());
             break;
     }
+    initLimitPage();
+    filterChange();
 
-    model->select();
 }
 
 
@@ -159,9 +170,11 @@ void StudentWidget::on_deleteStudent_clicked()
     QString student_id = model->data(model->index(ui->tableView->currentIndex().row(), model->fieldIndex("student_id")), Qt::EditRole).toString();
     QString msg = QString("你确定要删除%1(学号：%2)吗？\n在提交之前可以回滚所有删除").arg(name, student_id);
     auto result = QMessageBox::information(this, "删除操作",msg, QMessageBox::Yes, QMessageBox::No);
+
+
     if (result == QMessageBox::Yes) {
         int row = selectionModel->currentIndex().row();
-//        ui->tableView->setColumnHidden(row, true);
+        ui->tableView->setRowHidden(row, true);
         model->removeRow(row);
 
 //        qDebug() << selectionModel->currentIndex().row();
@@ -202,6 +215,10 @@ void StudentWidget::on_pushButton_clicked()
         return;
     }
     model->revertAll();
+    for (int i = 0; i < model->rowCount(); ++i) {
+        ui->tableView->setRowHidden(i, false);
+    }
+
 }
 
 
@@ -254,8 +271,11 @@ void StudentWidget::mappingRowChanged(int index) {
 
 int StudentWidget::queryAllCount() {
     QSqlQuery query;
-    query.exec("select count(*) from student");
+    QString sql = "select count(*) from student" + (searchFilter.isEmpty() ? "": " where " + searchFilter);
+//    qDebug() << sql;
+    query.exec(sql);
     query.next();
+//    qDebug() << query.lastError().text();
     return query.value(0).toInt();
 }
 
@@ -263,4 +283,33 @@ int StudentWidget::queryAllCount() {
 //{
 //    limit = QString("limit %1, %2")
 //}
+
+
+void StudentWidget::on_tableView_customContextMenuRequested(const QPoint &pos)
+{
+    this->menu->exec(QCursor::pos());
+}
+
+
+void StudentWidget::on_pageNumber_valueChanged(int arg1)
+{
+    model->setLimit(arg1, PAGE_COUNT);
+    filterChange();
+}
+
+void StudentWidget::initLimitPage() {
+    int total = queryAllCount();
+    if (total == 0) {
+        return;
+    }
+    ui->pageNumber->setMinimum(1);
+    ui->pageNumber->setMaximum(total / PAGE_COUNT + 1);
+    ui->pageNumber->setValue(1);
+    model->setLimit(1, PAGE_COUNT);
+}
+
+void StudentWidget::filterChange() {
+    model->setFilter(searchFilter);
+    model->select();
+}
 

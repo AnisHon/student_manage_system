@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+extern QString basePath;
+
 namespace Ui {
 class LoginWindow;
 }

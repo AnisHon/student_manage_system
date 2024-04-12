@@ -5,8 +5,13 @@
 #include <QTableView>
 #include <QSqlTableModel>
 #include <QDataWidgetMapper>
-
+#include <QMenu>
 #include "comboboxdelegate.h"
+#include "LimitedQSqlTableModel.h"
+
+
+extern QString basePath;
+
 namespace Ui {
 class StudentWidget;
 }
@@ -16,7 +21,7 @@ class StudentWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit StudentWidget(const QSqlDatabase& database, QWidget *parent = nullptr);
+    explicit StudentWidget(QWidget *parent = nullptr);
     ~StudentWidget() override;
 
 private slots:
@@ -40,12 +45,22 @@ private slots:
 
 //    void on_pageSpan_valueChanged(int arg1);
 
+    void on_tableView_customContextMenuRequested(const QPoint &pos);
+
+    void on_pageNumber_valueChanged(int arg1);
+
 private:
     void changeMappingRow(const QModelIndex &current, const QModelIndex &previous);
 
     void mappingRowChanged(int index);
 
     int queryAllCount();
+
+    void initMenu();
+
+    void initLimitPage();
+
+    void filterChange();
 
 private:
     void initTable();
@@ -56,18 +71,25 @@ public:
 private:
     Ui::StudentWidget *ui;
 
-    const QString base_dir = "/Users/anishan/Project/qt/student_manage_system/portraits/";
+    const QString base_dir = basePath;
     const QString base_path = base_dir + "/";
     const QString default_portrait = "default_portrait.png";
 
-    QSqlTableModel *model;
+    QString searchFilter;
+    QString pageFilter;
+
+    LimitedQSqlTableModel *model;
     QItemSelectionModel *selectionModel;
     QDataWidgetMapper *mapper;
-    QSqlDatabase db;
     ComboBoxDelegate *comboBoxDelegate;
+    QMenu *menu;
 
+    const int PAGE_COUNT = 15;
 //    QString limit;
 
+    enum SearchMethod {
+        NAME = 0, ID
+    };
 
 };
 

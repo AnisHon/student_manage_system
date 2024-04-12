@@ -3,21 +3,14 @@
 #include "mainwindow.h"
 #include <QPalette>
 #include <QMouseEvent>
-
-SideBar::SideBar(const QSqlDatabase& database, QWidget *parent)
+SideBar::SideBar(QWidget *parent)
     : QWidget(parent),
-    ui(new Ui::SideBar),
-    db(database)
+    ui(new Ui::SideBar)
 
 {
 
     ui->setupUi(this);
-
-
-
-
     pointers = {ui->indexBtn, ui->scoreBtn, ui->studentBtn, ui->statisticBtn};
-
     for (const auto &item: pointers) {
         item->installEventFilter(this);
     }
@@ -30,9 +23,9 @@ SideBar::SideBar(const QSqlDatabase& database, QWidget *parent)
 
 void SideBar::initWidget() {
 
-    indexWidget = new IndexWidget(db, this);
-    studentWidget = new StudentWidget(db, this);
-    scoreWidget = new ScoreWidget(db, this);
+    indexWidget = new IndexWidget(this);
+    studentWidget = new StudentWidget(this);
+    scoreWidget = new ScoreWidget(this);
     statisticWidget = new StatisticWidget(this);
 
 

@@ -63,22 +63,26 @@ StudentWidget QLineEdit {
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
-         <layout class="QFormLayout" name="formLayout">
+         <layout class="QGridLayout" name="gridLayout">
           <property name="sizeConstraint">
            <enum>QLayout::SetMaximumSize</enum>
-          </property>
-          <property name="fieldGrowthPolicy">
-           <enum>QFormLayout::FieldsStayAtSizeHint</enum>
-          </property>
-          <property name="labelAlignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="formAlignment">
-           <set>Qt::AlignCenter</set>
           </property>
           <property name="verticalSpacing">
            <number>0</number>
           </property>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="searchEdit">
+            <property name="minimumSize">
+             <size>
+              <width>280</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="placeholderText">
+             <string>  搜索框</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="0">
            <widget class="QComboBox" name="searchMethod">
             <property name="currentIndex">
@@ -96,18 +100,8 @@ StudentWidget QLineEdit {
             </item>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="searchEdit">
-            <property name="minimumSize">
-             <size>
-              <width>280</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="placeholderText">
-             <string>  搜索框</string>
-            </property>
-           </widget>
+          <item row="0" column="2">
+           <widget class="QSpinBox" name="pageNumber"/>
           </item>
          </layout>
         </item>
@@ -217,7 +211,7 @@ StudentWidget QLineEdit {
       </size>
      </property>
      <property name="title">
-      <string/>
+      <string>详细信息</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
@@ -356,7 +350,104 @@ StudentWidget QLineEdit {
     </widget>
    </item>
   </layout>
+  <action name="commit">
+   <property name="text">
+    <string>提交更改</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="rollback">
+   <property name="text">
+    <string>取消更改</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="deleteStu">
+   <property name="text">
+    <string>删除学生</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
+  <action name="insert">
+   <property name="text">
+    <string>添加学生</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::NoRole</enum>
+   </property>
+  </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>deleteStu</sender>
+   <signal>triggered()</signal>
+   <receiver>deleteStudent</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>329</x>
+     <y>85</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rollback</sender>
+   <signal>triggered()</signal>
+   <receiver>pushButton</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>232</x>
+     <y>85</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>commit</sender>
+   <signal>triggered()</signal>
+   <receiver>submitBtn</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>135</x>
+     <y>85</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>insert</sender>
+   <signal>triggered()</signal>
+   <receiver>addStudent</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>426</x>
+     <y>85</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

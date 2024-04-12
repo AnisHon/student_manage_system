@@ -13,7 +13,7 @@ class IndexWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit IndexWidget(const QSqlDatabase& database, QWidget *parent = nullptr);
+    explicit IndexWidget(QWidget *parent = nullptr);
     ~IndexWidget() override;
 
 
@@ -38,7 +38,6 @@ private:
 private:
     Ui::IndexWidget *ui;
     QSqlTableModel *model;
-    QSqlDatabase db;
     QMenu *menu;
     QString limit;
 

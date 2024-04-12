@@ -22,7 +22,7 @@ class ScoreWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit ScoreWidget(const QSqlDatabase& database, QWidget *parent = nullptr);
+    explicit ScoreWidget(QWidget *parent = nullptr);
     ~ScoreWidget() override;
 
 private slots:
@@ -70,7 +70,6 @@ private:
 
 private:
     Ui::ScoreWidget *ui;
-    QSqlDatabase db;
     QMap<int, QString> subjects;
 
 

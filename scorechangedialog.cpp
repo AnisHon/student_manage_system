@@ -92,6 +92,9 @@ void ScoreChangeDialog::on_okBtn_clicked()
 void ScoreChangeDialog::on_restoreBtn_clicked()
 {
     model->revertAll();
+    for (int i = 0; i < model->rowCount(); ++i) {
+        ui->tableView->setRowHidden(i, false);
+    }
 }
 
 
@@ -125,8 +128,9 @@ void ScoreChangeDialog::on_deleteAction_triggered()
 //    model->select();
 //    model->setData(model->index(ui->tableView->currentIndex().row(), 3), 12);
 //    qDebug() << model->data(model->index(ui->tableView->currentIndex().row(), 3));
-    model->removeRow(selectionModel->currentIndex().row());
-
+    auto row = selectionModel->currentIndex().row();
+    ui->tableView->setRowHidden(row, true);
+    model->removeRow(row);
 
 }
 

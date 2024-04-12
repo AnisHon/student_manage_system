@@ -44,7 +44,8 @@ void LoginWindow::on_username_textChanged(const QString &arg1) {
         ui->portrait->setPixmap(QPixmap(":/icon/portraits/default_portrait.png"));
         return;
     }
-    auto path = "/Users/anishan/Project/qt/student_manage_system/portraits/" + query.value(0).toString();
+
+    auto path = basePath + "/" + query.value(0).toString();
     QFile file(path);
     if (!file.exists()) {
         return;
