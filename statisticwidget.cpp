@@ -320,8 +320,8 @@ void StatisticWidget::on_ComboBox_activated(int index)
 //    qDebug() << subjects;
     int id = ui->ComboBox->currentData().toInt();
     initBarChart(id);
-    ui->average->setText(QString("<h2>平均分：%1</h2>").arg(subjectSum(id)));
-    ui->total->setText(QString("<h3>总人数：%1</h3>").arg(subjectAverage(id)));
+    ui->average->setText(QString("<h2>总分：%1</h2>").arg(subjectSum(id)));
+    ui->total->setText(QString("<h3>平均分：%1</h3>").arg(subjectAverage(id)));
 
     ui->listWidget->clear();
     ui->listWidget->addItems(getProjectScores(id));

@@ -228,7 +228,7 @@ void StudentWidget::on_pushButton_2_clicked()
     if (!modelIndex.isValid()) {
         return;
     }
-    QString filename = QFileDialog::getOpenFileName(this, "选择图片", QDir::homePath(), "图片文件(*.jpg *.png *.jpeg)");
+    QString filename = QFileDialog::getOpenFileName(this, "选择图片", QDir::homePath(), "图片文件(*.jpg *.png *.jpeg *.gif)");
     QFileInfo info(filename);
 
     if (!info.exists()) {

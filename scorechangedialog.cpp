@@ -13,6 +13,11 @@ ScoreChangeDialog::ScoreChangeDialog(QWidget *parent)
 {
     ui->setupUi(this);
 
+    initModel();
+
+}
+
+void ScoreChangeDialog::initModel() {
     model = new QSqlRelationalTableModel(this);
     model->setTable("score");
 
@@ -118,8 +123,11 @@ void ScoreChangeDialog::on_tableView_customContextMenuRequested(const QPoint &po
 void ScoreChangeDialog::on_addAction_triggered()
 {
     auto record = model->record();
+    auto rowIndex = model->rowCount();
+    record.setValue(record.indexOf("score"), 0);
     record.setValue(model->fieldIndex("stu_id"), id_);
-    model->insertRecord(model->rowCount(), record);
+    model->insertRecord(rowIndex, record);
+    ui->tableView->setCurrentIndex(model->index(rowIndex, model->fieldIndex("")));
 }
 
 
@@ -138,5 +146,9 @@ void ScoreChangeDialog::on_deleteAction_triggered()
 void ScoreChangeDialog::on_restoreAction_triggered()
 {
     on_restoreBtn_clicked();
+}
+
+void ScoreChangeDialog::showEvent(QShowEvent *) {
+    model->select();
 }
 

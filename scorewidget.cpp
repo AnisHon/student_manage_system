@@ -26,6 +26,7 @@ ScoreWidget::ScoreWidget(QWidget *parent)
     ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableView->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     scoreChangeDialog = new ScoreChangeDialog(this);
 
 
@@ -61,11 +62,12 @@ QSqlQuery ScoreWidget::queryForScore() {
                       "left join student stu on score.stu_id = stu.id "
                       "left join subject on score.subject_id = subject.id";
 
-    QString conditionalAggregation = "MAX(case when score.subject_id = %1 then score.score end) as %2,";
-    QString aggregation;
 
+    QString aggregation;
     for (const auto &item: subjects.asKeyValueRange()) {
-        aggregation += QString(conditionalAggregation).arg(item.first).arg(item.second);
+        QString conditionalAggregation = QString(" MAX(case when score.subject_id = '%1' then score.score end) as '%2', ").arg(item.first).arg(item.second);
+
+        aggregation.append(conditionalAggregation);
 
     }
     mainSql = mainSql.arg(aggregation);
@@ -84,7 +86,7 @@ QSqlQuery ScoreWidget::queryForScore() {
 //        qDebug() << record.fieldName(sortColumn);
 //        qDebug() << sortColumn;
     } else {
-        mainSql += " order by id";
+        mainSql += " order by score.stu_id";
     }
 
 
@@ -94,6 +96,7 @@ QSqlQuery ScoreWidget::queryForScore() {
 
 //    qDebug() << (mainSql + QString(" limit %1, %2").arg((currentIndex - 1) * ROW_COUNT).arg(ROW_COUNT));
 //    qDebug() << mainSql.arg(aggregation);
+//    qDebug() << mainSql + QString(" limit %1, %2").arg((currentIndex - 1) * ROW_COUNT).arg(ROW_COUNT);
     return query;
 }
 
@@ -134,8 +137,7 @@ void ScoreWidget::initModel() {
 
 
 
-//    qDebug() << model->lastError();
-
+//    qDebug() << model->lastError().text();
 }
 
 
@@ -315,7 +317,7 @@ void ScoreWidget::on_outputAllAction_triggered()
     QString aggregation;
 
     for (const auto &item: subjects.asKeyValueRange()) {
-        aggregation += QString(conditionalAggregation).arg(item.first).arg(item.second);
+        aggregation.append(QString(conditionalAggregation).arg(item.first).arg(item.second));
     }
     mainSql = mainSql.arg(aggregation);
     mainSql += " group by stu_id";

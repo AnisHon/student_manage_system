@@ -85,7 +85,7 @@ private:
     QMenu *menu;
 
     int currentIndex = 1;
-    const int ROW_COUNT = 15;
+    const int ROW_COUNT = 10;
 
 
 };

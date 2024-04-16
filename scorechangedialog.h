@@ -15,7 +15,7 @@ class ScoreChangeDialog : public QDialog
 
 public:
     explicit ScoreChangeDialog(QWidget *parent = nullptr);
-    ~ScoreChangeDialog();
+    ~ScoreChangeDialog() override;
 
     void setName(const QString &name);
     void setStudentId(const QString &studentId);
@@ -37,11 +37,18 @@ private slots:
     void on_restoreAction_triggered();
 
 private:
+    void initModel();
+
+    void showEvent(QShowEvent *) override;
+
+private:
     Ui::ScoreChangeDialog *ui;
     QSqlRelationalTableModel *model;
     QMenu *menu;
     int id_;
     QItemSelectionModel *selectionModel;
+
+
 };
 
 #endif // SCORECHANGEDIALOG_H
