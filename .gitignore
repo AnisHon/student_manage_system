@@ -5,3 +5,4 @@ cmake-build-debug
 build
 *.user
 *.txt.user
+CMakeLists.txt.user
