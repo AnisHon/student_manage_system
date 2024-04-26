@@ -9,6 +9,7 @@
         <file>icon/lock.png</file>
         <file>icon/logout.png</file>
         <file>icon/user.png</file>
+        <file>icon/system.png</file>
     </qresource>
     <qresource prefix="/style">
         <file>qss/main-style.qss</file>

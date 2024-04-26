@@ -25,7 +25,12 @@ set(PROJECT_SOURCES
         LimitedQSqlTableModel.cpp
         LimitedQSqlTableModel.h
 )
+set(app_icon_name yaoxi.icns)
+set(app_icon_macos "${CMAKE_CURRENT_SOURCE_DIR}/${app_icon_name}")
+set(MACOSX_BUNDLE_ICON_FILE ${app_icon_name})
 
+set_source_files_properties(${app_icon_macos} PROPERTIES
+        MACOSX_PACKAGE_LOCATION "Resources")
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(student_manage_system
         MANUAL_FINALIZATION
@@ -42,13 +47,22 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         loginwindow.h loginwindow.cpp loginwindow.ui
         circleprogressbar.h circleprogressbar.cpp circleprogressbar.ui
         aligncenterdelegate.h aligncenterdelegate.cpp
-        logo.rc
-        genshin_impact.ico
-            spinboxdelegate.h spinboxdelegate.cpp
-            properties.h properties.cpp
-            databaseconnectiondialog.h databaseconnectiondialog.cpp databaseconnectiondialog.ui
+
+        spinboxdelegate.h spinboxdelegate.cpp
+        properties.h properties.cpp
+        databaseconnectiondialog.h databaseconnectiondialog.cpp databaseconnectiondialog.ui
+
+
+#        logo.rc
+#        genshin_impact.ico
+#        yaoxi.icns
+#        MACOSX_BUNDLE
+        ${app_icon_macos}
     )
-# Define target properties for Android with Qt 6 as:
+
+
+
+    # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET student_manage_system APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation

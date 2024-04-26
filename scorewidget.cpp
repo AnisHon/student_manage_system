@@ -330,8 +330,6 @@ void ScoreWidget::on_outputAllAction_triggered()
         header << sqlRecord.fieldName(i);
     }
 
-//    qDebug() << header;
-//    qDebug() << path;
     QVector<QStringList> content;
     while (query.next()) {
         QStringList row;
@@ -356,11 +354,24 @@ void ScoreWidget::on_outputAllAction_triggered()
 }
 
 void ScoreWidget::headerValidate(const CSVTool& tool) {
+
     const QStringList &header = tool.getHeader();
+    const QStringList index_headers = {"学号", "ID", "id", "Id"};
+
     if (header.isEmpty()) {
         throw std::runtime_error("文件格式错误");
     }
-    if (!header.contains("学号")) {
+
+    //false means not contain;
+    bool flag = false;
+    for (const auto &item: index_headers) {
+        if (header.contains(item)) {
+            flag = true;
+            break;
+        }
+    }
+
+    if (!flag) {
         throw std::runtime_error("缺少学号，必须有学号作为学生身份唯一索引");
     }
 }

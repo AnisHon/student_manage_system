@@ -74,10 +74,18 @@ QPushuButton:pressed {
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgba(224, 224, 222, 0.95);
-padding-top: 5px</string>
+padding-top: 5px;
+color: qlineargradient(x1: 0, y1: 0,   x2: 0, y2: 1,    stop: 0 #66e, stop: 1 #fd3e7f);
+</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;学生管理系统&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string/>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::AutoText</enum>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
      </property>
     </widget>
    </item>

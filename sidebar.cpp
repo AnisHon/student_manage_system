@@ -3,6 +3,8 @@
 #include "mainwindow.h"
 #include <QPalette>
 #include <QMouseEvent>
+#include <QPalette>
+#include <QBrush>
 SideBar::SideBar(QWidget *parent)
     : QWidget(parent),
     ui(new Ui::SideBar)
@@ -38,8 +40,7 @@ void SideBar::initWidget() {
 
 //    qDebug() << ui->conetent->count();
 
-    ui->conetent->setCurrentIndex(0);
-    ui->indexBtn->setChecked(true);
+    ui->indexBtn->click();
 
 
     auto mainWindow = dynamic_cast<MainWindow *>(parent());
@@ -68,6 +69,10 @@ void SideBar::changePage(QPushButton *sender) {
         item->setChecked(false);
     }
     sender->setChecked(true);
+
+    auto p = sender->palette();
+    p.setColor(QPalette::ButtonText, Qt::red);
+    sender->setPalette(p);
 
 
     int i = (int)pointers.indexOf(sender);
